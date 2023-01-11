@@ -1,0 +1,17 @@
+baseURL = 'http://przemek.malirz.pl/'
+languageCode = 'pl'
+title = 'Przemek Malirz'
+theme = 'trainer'
+
+staticDir=["./resources/dist/assets", "./static"]
+
+[params]
+    favicon = "favicon.ico"
+
+[build]
+  writeStats = true
+
+# syntax highlight settings
+[markup]
+  [markup.highlight]
+    style = "dracula"

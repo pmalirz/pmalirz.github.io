@@ -1,0 +1,10 @@
+name = "trainer"
+license = "MIT"
+description = "A boilerplate starter theme using Tailwind CSS."
+tags = ["Hugo", "Tailwind CSS", "theme", "starter", "boilerplate"]
+features = []
+min_version = "0.100"
+
+[author]
+  name = "Przemek Malirz"
+  homepage = "https://przemek.malirz.pl/"
