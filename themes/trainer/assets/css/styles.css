@@ -10,6 +10,54 @@
 /* see https://tailwindcss.com/docs/functions-and-directives#layer */
 @layer components {
 
+    @-webkit-keyframes rotating /* Safari and Chrome */
+    {
+        from {
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes rotating {
+        from {
+            -ms-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        to {
+            -ms-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    .bkg {
+        background-image: url("/img/bg.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .hero {
+        background-image: url("/img/hero.jpg");
+        background-size: cover;
+    }
+
+    .background {
+        /*        -webkit-animation: rotating 300s linear infinite;
+                -moz-animation: rotating 300s linear infinite;
+                -ms-animation: rotating 300s linear infinite;
+                -o-animation: rotating 300s linear infinite;
+                animation: rotating 300s linear infinite;*/
+    }
 }
 
 @layer base {
