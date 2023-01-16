@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently npm:watch:*",
     "watch:tw": "tailwindcss --config ./themes/trainer/assets/css/tailwind.config.js -o ./resources/dist/assets/css/gen.css --watch",
-    "watch:hugo": "hugo server -D --bind=192.168.0.59 --debug --ignoreCache --printPathWarnings --noHTTPCache  --disableFastRender",
+    "watch:hugo": "hugo server -D --debug --ignoreCache --printPathWarnings --noHTTPCache  --disableFastRender",
     "build": "hugo --minify",
     "test": "hugo"
   },
