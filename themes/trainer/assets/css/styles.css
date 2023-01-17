@@ -10,6 +10,14 @@
 /* see https://tailwindcss.com/docs/functions-and-directives#layer */
 @layer components {
 
+    .offer-item-list-image {
+        @apply grayscale;
+    }
+
+    .offer-item-list-container:hover .offer-item-list-image {
+        @apply grayscale-0;
+    }
+
     @-webkit-keyframes rotating /* Safari and Chrome */
     {
         from {

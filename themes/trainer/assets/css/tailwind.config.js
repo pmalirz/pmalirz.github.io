@@ -9,7 +9,7 @@ module.exports = {
         ]
     },
     theme: {
-        extends: {}
+        minHeight: ({ theme }) => theme('spacing')
     },
     plugins: [
         require('@tailwindcss/typography'),

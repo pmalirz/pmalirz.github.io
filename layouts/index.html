@@ -4,7 +4,7 @@
 {{range where .Site.Pages "Section" "offer" }}
     {{ $.Scratch.Set "index" (add ($.Scratch.Get "index") 1) }}
     {{if .IsPage}}
-        {{partial "hero.html" (dict "context" .)}}
+        {{partial "offer-list-item.html" (dict "context" .)}}
     {{ end }}
 {{end}}
 

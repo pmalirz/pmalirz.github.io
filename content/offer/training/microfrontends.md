@@ -1,9 +1,10 @@
 ---
 author: Przemek Malirz
-title: Szkolenia
+title: Microfrontends
 code: training
+duration: 4h
 date: 2023-01-09
-description: Szkolenia
+description: Modularny frontend w świecie mikroserwisów i modularnych monolitów (z przykładami)
 keywords: [warsztaty, programowanie]
 weight: 10
 ---

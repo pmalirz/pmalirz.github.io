@@ -2,12 +2,12 @@
 <html lang='{{ .Site.LanguageCode }}'>
 {{ partial "head.html" . }}
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen h-screen z-0">
 
     {{- partial "background.html" . -}}
     <!--{{- partial "dev/dev-tools.html" . -}}-->
     {{- partial "header.html" . -}}
-    <main class="flex-1 mx-4 md:mx-12 lg:mx-24 mt-4 sm:mt-16 justify-center">
+    <main class="flex-1 grow mx-4 md:mx-12 lg:mx-24 mt-4 sm:mt-16 justify-center z-0">
         {{- block "main" . }}{{- end }}
     </main>
     {{- partial "footer.html" . -}}
