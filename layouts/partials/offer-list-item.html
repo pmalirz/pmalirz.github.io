@@ -1,14 +1,19 @@
-<div class="offer-item-list-container isolate bg-white max-w-5xl mx-auto rounded-lg sm:rounded-r-lg sm:rounded-l-full shadow-lg overflow-hidden relative mb-2">
-
+<div class="offer-item-list-container isolate bg-zinc-50 max-w-5xl mx-auto rounded-lg sm:rounded-r-lg sm:rounded-l-full shadow-lg overflow-hidden relative mb-2">
+<!--    <div class="hero isolate absolute left-0 overflow-hidden opacity-20 h-full w-full -z-10">
+    </div>-->
     <a href="{{.context.Permalink}}">
         <div class="sm:flex relative">
-            <div class="hero isolate absolute left-0 overflow-hidden opacity-30 -z-40">
-            </div>
             <div class="sm:flex shrink-0 sm:w-16">
-                {{ $pagePath := path.Dir .context.Page.File }}
-                {{ $pageName := path.BaseName .context.Page.File }}
-                {{ $imagePath := printf "%s%s%s%s" $pagePath "/" $pageName ".jpg" }}
-                <img class="object-cover w-full h-full offer-item-list-image" src="{{$imagePath}}" alt="Image {{.context.Params.code}}">
+                {{ $pageName := path.BaseName .context.File }}
+                {{ $imageName := printf "%s%s%s" "**/" $pageName ".jpg" }}
+                {{ $image := resources.GetMatch "mentoring.jpg" }}
+
+                {{ $image := resources.GetMatch $imageName }}
+
+                {{ if $image }}
+                {{ $image := $image.Resize "420x jpeg q85" }}
+                <img class="object-cover w-full h-full offer-item-list-image" src="{{$image.Permalink}}" alt="Image {{.context.Params.code}}">
+                {{ end }}
             </div>
             <div class="grow px-4 sm:px-4 pt-2 pb-4">
                 <div class="mx-auto">
