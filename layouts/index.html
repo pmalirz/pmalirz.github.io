@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+<main class="container mx-auto sm:mt-16 lg:px-48 mt-4">
+<div class="flex flex-wrap grid grid-cols-1 md:grid-cols-3 lg:gap-8 gap-4">
 {{ $.Scratch.Set "index" 0 }}
 {{range where .Site.Pages "Section" "offer" }}
     {{ $.Scratch.Set "index" (add ($.Scratch.Get "index") 1) }}
@@ -7,5 +9,7 @@
         {{partial "offer-list-item.html" (dict "context" .)}}
     {{ end }}
 {{end}}
+</div>
+</main>
 
 {{ end }}

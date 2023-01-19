@@ -1,9 +1,9 @@
-<div class="offer-item-list-container isolate bg-zinc-50 max-w-5xl mx-auto rounded-lg sm:rounded-r-lg sm:rounded-l-full shadow-lg overflow-hidden relative mb-2">
-<!--    <div class="hero isolate absolute left-0 overflow-hidden opacity-20 h-full w-full -z-10">
-    </div>-->
+<div class="offer-item-list-container bg-zinc-50 rounded-md shadow-lg overflow-hidden">
+    <!--    <div class="hero isolate absolute left-0 overflow-hidden opacity-20 h-full w-full -z-10">
+        </div>-->
     <a href="{{.context.Permalink}}">
-        <div class="sm:flex relative">
-            <div class="sm:flex shrink-0 sm:w-16">
+        <div class="flex flex-col">
+            <div class="flex-none h-36">
                 {{ $pageName := path.BaseName .context.File }}
                 {{ $imageName := printf "%s%s%s" "**/" $pageName ".jpg" }}
                 {{ $image := resources.GetMatch "mentoring.jpg" }}
@@ -12,28 +12,26 @@
 
                 {{ if $image }}
                 {{ $image := $image.Resize "420x jpeg q85" }}
-                <img class="object-cover w-full h-full offer-item-list-image" src="{{$image.Permalink}}" alt="Image {{.context.Params.code}}">
+                <img class="object-cover w-full h-full offer-item-list-image" src="{{$image.Permalink}}"
+                     alt="Image {{.context.Params.code}}">
                 {{ end }}
             </div>
-            <div class="grow px-4 sm:px-4 pt-2 pb-4">
-                <div class="mx-auto">
-                    <div>
-                        <p class="text-left tracking-tight sm:text-lg font-semibold text-indigo-600">
-                            {{.context.Title}}
-                         ️</p>
-                        <p class="mt-2 text-md leading-2 text-gray-500 min-h-[3rem]">
-                            {{.context.Description}}
-                        </p>
-                    </div>
-                </div>
+            <div class="h-36 px-4 pt-2">
+                <p class="text-left tracking-tight sm:text-lg font-semibold text-emerald-600">
+                    {{.context.Title}}
+                </p>
+                <p class="mt-2 text-md leading-2 text-gray-500 min-h-[3rem]">
+                    {{.context.Description}}
+                </p>
             </div>
-            <div class="sm:flex-none shrink-0 px-2 sm:px-2 pt-2 pb-4 sm:w-36 sm:max-w-36">
-                <h1 class="text-left tracking-tight text-left text-gray-500 sm:text-md">
-                    ⏰ {{.context.Params.duration}}
-                 ️</h1>
-                <div class="mt-2">
-                    {{partial "badge.html" (dict "context" . "text" "Za darmo" "color" "bg-rose-600")}}
-                </div>
+            <div class="flex flex-row justify-between px-4">
+                    <div class="">
+                        {{$text := printf "%s %s" "⏰" .context.Params.duration}}
+                        {{partial "badge.html" (dict "context" . "text" $text "bgcolor" "bg-gray-200" "txcolor" "text-black")}}
+                     ️</div>
+                    <div class="">
+                        {{partial "badge.html" (dict "context" . "text" "Za darmo" "bgcolor" "bg-rose-600" "txcolor" "text-white")}}
+                    </div>
             </div>
         </div>
     </a>
