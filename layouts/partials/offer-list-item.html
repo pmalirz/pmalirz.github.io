@@ -1,13 +1,11 @@
-<div class="offer-item-list-container bg-zinc-50 rounded-md shadow-lg overflow-hidden">
+<div class="offer-item-list-container bg-zinc-50 rounded-md shadow-lg overflow-hidden max-w-sm">
     <!--    <div class="hero isolate absolute left-0 overflow-hidden opacity-20 h-full w-full -z-10">
         </div>-->
     <a href="{{.context.Permalink}}">
-        <div class="flex flex-col">
-            <div class="flex-none h-36">
+        <div class="">
+            <div class="h-48">
                 {{ $pageName := path.BaseName .context.File }}
                 {{ $imageName := printf "%s%s%s" "**/" $pageName ".jpg" }}
-                {{ $image := resources.GetMatch "mentoring.jpg" }}
-
                 {{ $image := resources.GetMatch $imageName }}
 
                 {{ if $image }}

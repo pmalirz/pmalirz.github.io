@@ -11,7 +11,7 @@
 @layer components {
 
     .offer-item-list-image {
-        @apply grayscale;
+        @apply grayscale-0;
     }
 
     .offer-item-list-container:hover .offer-item-list-image {
