@@ -15,14 +15,3 @@ staticDir=["./resources/dist/assets", "./static"]
 [markup]
   [markup.highlight]
     style = "dracula"
-
-#[module]
-#[[module.mounts]]
-#  source = 'content'
-#  target = 'content'
-#[[module.mounts]]
-#  source = 'static'
-#  target = 'static'
-#[[module.mounts]]
-#  source = 'assets'
-#  target = 'assets'
