@@ -8,7 +8,7 @@ type: about
 ---
 
 Nazywam się **Przemek Malirz** i jestem architektem z 20-letnim doświadczeniem w projektowaniu i
-implementacji różnej wielkości systemów. Posiadam doświadczenie w różnych dziedzinach biznesu,
+implementacji różnej wielkości systemów. Swoje doświadczenie zdobywałem w różnych dziedzinach biznesu,
 takich jak geodezja, grafika, telekomunikacja, ubezpieczenia i usługi finansowe. Jako lider techniczny, zarządzam
 rozproszonymi i wielokulturowymi zespołami. Jestem gorącym zwolennikiem
 frameworku [InnerSource](https://innersourcecommons.org/ "InnerSource") oraz propagatorem
