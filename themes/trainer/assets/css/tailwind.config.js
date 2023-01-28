@@ -9,7 +9,12 @@ module.exports = {
         ]
     },
     theme: {
-        minHeight: ({ theme }) => theme('spacing')
+        extend:
+            {
+                fontFamily: {
+                    'poppins': ['Poppins', 'sans-serif']
+                },
+            }
     },
     plugins: [
         require('@tailwindcss/typography'),
@@ -17,11 +22,11 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/line-clamp'),
     ],
-/*    safelist: [
+    safelist: [
         {
-            // pattern: /bg-.*!/,
+             pattern: /w-.*/,
             // variants: ['lg', 'hover', 'focus', 'lg:hover'],
         },
-    ]*/
+    ]
 
 }

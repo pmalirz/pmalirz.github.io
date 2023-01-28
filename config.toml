@@ -3,15 +3,36 @@ languageCode = 'pl'
 title = 'Przemek Malirz'
 theme = 'trainer'
 
-staticDir=["./resources/dist/assets", "./static"]
+staticDir = ["./resources/dist/assets", "./static"]
+#sectionPagesMenu = "main"
 
 [params]
-  favicon = "favicon.ico"
+favicon = "favicon.ico"
 
 [build]
-  writeStats = true
+writeStats = true
+
+[menu]
+[[menu.main]]
+identifier = 'offer'
+name = 'offer'
+title = 'Oferta'
+url = '/'
+weight = 1
+[[menu.main]]
+identifier = 'blog'
+name = 'blog'
+url = '/blog/'
+title = 'Blog'
+weight = 2
+[[menu.main]]
+identifier = 'about'
+name = 'about'
+url = '/about/'
+title = 'O mnie'
+weight = 3
 
 # syntax highlight settings
 [markup]
-  [markup.highlight]
-    style = "dracula"
+[markup.highlight]
+style = "dracula"

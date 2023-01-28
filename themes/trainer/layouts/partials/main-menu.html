@@ -36,12 +36,23 @@
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
+
+                        {{ $currentPage := . }}
+                        {{ $pageURL := $currentPage.RelPermalink | relLangURL }}
+
+                        {{ range .Site.Menus.main }}
+
+                        {{ $menuItemURL := .URL | relLangURL }}
+
+                        {{ if eq $menuItemURL $pageURL }}
+                        <a href="{{ .URL }}" class="bg-gray-800 text-white border border-stone-400 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">{{ .Title }}</a>
+                        {{ else }}
+                        <a href="{{ .URL }}" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ .Title }}</a>
+                        {{ end }}
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="border border-stone-400 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Oferta</a>
 
-                        <a href="#" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                        {{ end }}
 
-                        <a href="#" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">O mnie</a>
                     </div>
                 </div>
             </div>
