@@ -1,0 +1,11 @@
+{{  $build := dict
+    "targetPath" "app.js"
+    "params" (dict
+    "basePath" ("/" | relURL)
+    )
+}}
+
+{{ with resources.Get "script/index.js" }}
+{{ $script := js.Build $build . | resources.Fingerprint "sha512" }}
+<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+{{ end }}
