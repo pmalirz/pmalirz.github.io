@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 /* TailwindCSS base styles */
 /* see https://tailwindcss.com/docs/functions-and-directives#tailwind */
 @tailwind base;
@@ -30,6 +31,10 @@
 
     .myarticle > blockquote {
         @apply p-4 my-4 border-l-4 border-gray-400 bg-gray-200 dark:border-gray-500 dark:bg-gray-800
+    }
+
+    .myarticle a {
+        @apply underline text-sky-900 hover:text-blue-800 visited:text-purple-800
     }
 
 }

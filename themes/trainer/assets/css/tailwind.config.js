@@ -12,7 +12,7 @@ module.exports = {
         extend:
             {
                 fontFamily: {
-                    'poppins': ['Poppins', 'sans-serif']
+                    'sans': ['Roboto', 'sans-serif'],
                 },
             }
     },
@@ -22,11 +22,11 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/line-clamp'),
     ],
-    safelist: [
+/*    safelist: [
         {
-             pattern: /w-.*/,
+             pattern: /w-.*!/,
             // variants: ['lg', 'hover', 'focus', 'lg:hover'],
         },
-    ]
+    ]*/
 
 }
