@@ -1,6 +1,12 @@
 {{ define "main" }}
-<article class="px-6 mx-auto mb-16 prose text-gray-700 justify-self-center sm:px-4 md:px-0 lg:prose-lg">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-</article>
+<main class="container max-w-3xl mx-auto mb-auto sm:mt-12 mt-4">
+    <article class="text-gray-700 bg-zinc-100 px-16 py-8 rounded-xl text-justify myarticle">
+        <h1 class="font-bold text-3xl text-gray-700">{{ .Title }}</h1>
+
+        <hr class="mb-4"/>
+
+        {{ .Content }}
+
+    </article>
+</main>
 {{ end }}
