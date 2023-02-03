@@ -22,7 +22,7 @@ Jestem gorącym zwolennikiem frameworku [InnerSource](https://innersourcecommons
 praktyk Clean Code i DevOps.
 Dążę do budowania otwartych zespołów oraz niszczenia granic silosów poprzez otwartą współpracę i komunikację.
 
-> _"Any intelligent fool can make things bigger and more complex... It takes a touch of genius - and a lot of courage to
-move in the opposite direction."_ - E. F. Schumacher
+> Any intelligent fool can make things bigger and more complex... It takes a touch of genius - and a lot of courage to
+move in the opposite direction. - E. F. Schumacher
 
 {{< figure src="/img/Przemek-Malirz-View.jpg" class="flex max-w-xs" >}}

@@ -25,18 +25,6 @@
         background-attachment: fixed;
     }
 
-    .myarticle > p {
-        @apply mt-4
-    }
-
-    .myarticle > blockquote {
-        @apply p-4 my-4 border-l-4 border-gray-400 bg-gray-200 dark:border-gray-500 dark:bg-gray-800
-    }
-
-    .myarticle a {
-        @apply underline text-sky-900 hover:text-blue-800 visited:text-purple-800
-    }
-
 }
 
 @layer base {
