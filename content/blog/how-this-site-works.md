@@ -1,7 +1,8 @@
 ---
 author: Przemek Malirz
 title: Pierwszy naleśnik 🥞
-code: blog date: 2023-01-30 
+code: blog 
+date: 2023-01-30 
 description: Technikalia strony przemek.malirz.pl 
 keywords: [blog, hugo, tailwind, alpine.js, midjourney]
 weight: 1
