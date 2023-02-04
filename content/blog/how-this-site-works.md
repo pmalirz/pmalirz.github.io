@@ -4,7 +4,7 @@ title: Pierwszy naleśnik 🥞
 code: blog 
 date: 2023-01-30 
 description: Technikalia strony przemek.malirz.pl 
-keywords: [blog, hugo, tailwind, alpine.js, midjourney]
+keywords: [hugo, tailwind, alpine.js, midjourney, markdown, github pages]
 weight: 1
 ---
 To startowy wpis a jak wiadomo, pierwszy wpis jest jak pierwszy naleśnik. Ponoć takich pierwszych naleśników w

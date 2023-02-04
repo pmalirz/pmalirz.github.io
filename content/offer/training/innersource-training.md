@@ -4,7 +4,7 @@ title: InnerSource
 code: training
 duration: 2h
 date: 2023-01-09
-description: InnerSource to skuteczna adaptacja filozofii otwartego oprogramowania do środowiska biznesowego. 
+description: InnerSource to skuteczna adaptacja filozofii Open Source za zamkniętymi drzwiami firmy. 
 keywords: [warsztaty, programowanie]
 weight: 11
 ---
