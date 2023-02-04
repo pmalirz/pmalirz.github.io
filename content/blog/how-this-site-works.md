@@ -220,8 +220,9 @@ akcje Githuba. Akcje po poprawnym wywołaniu builda _Hugo_, commitują wynikowy 
 W zasadzie sposób publikowania i commitowania artykułów skłonił mnie do wybrania takiego stosu. Zobaczcie, nie ma 
 tutaj CMS'owej bazy danych, która może paść i którą trzeba aktualizować i chuchać i dmuchać. Baza danych to nasze pliki 
 _md_ commitowane i pushowane na Githuba. Praca w kilka osób i rozwiązywanie konfliktów? Znamy to z pracy z Gitem.
-Backup bazy / moich prac? Mam u siebie cały projekt i na Githubie. Wystarczy. Jak będę chciał to po prostu kopia na 
-pena.
+Dodatkowe zalety to to że możemy pracować na branchach oraz reviewować zmiany przed dopuszczeniem do publikacji.
+Backup bazy / naszych prac? Ja mam u siebie cały projekt, no i na Githubie. Wystarczy. Jak będę chciał to po prostu 
+kopia na pena i tyle.
 
 ## Wrażenia z pracy
 
