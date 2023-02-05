@@ -1,0 +1,21 @@
+<meta property="og:title" content="{{.Title}}">
+<meta property="og:type" content="{{if .IsHome}}website{{else}}article{{end}}" />
+{{- if .Description }}
+<meta property="og:description" content="{{if .Description}}{{ .Description }}{{else}}{{.Site.Params.Description}}{{end}}">
+{{ end -}}
+{{- .Scratch.Set "ogImage" (resources.Get "/img/logo.png") -}}
+{{- if ne .IsHome true }}
+    {{- $pageName := path.BaseName .File.LogicalName -}}
+    {{- $imageName := printf "%s%s%s" "**/" $pageName ".jpg" -}}
+    {{- $image := resources.GetMatch $imageName -}}
+    {{- if $image }}
+        {{ .Scratch.Set  "ogImage" $image }}
+    {{ end -}}
+{{ end -}}
+{{- $image := .Scratch.Get "ogImage" -}}
+<meta property="og:image" content="{{$image.Permalink}}">
+<meta property="og:url" content="{{.Site.BaseURL}}">
+<meta property=”og:locale” content=”{{.Site.Language.Lang}}” />
+<meta name="twitter:card" content="{{$image.Permalink}}">
+<meta name="twitter:site" content="{{.Site.Params.ttId}}">
+<meta property="fb:app_id" content="{{.Site.Params.fbId}}" />

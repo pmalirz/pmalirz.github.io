@@ -5,6 +5,9 @@ theme = 'trainer'
 
 [params]
 favicon = "favicon.ico"
+fbId = '998215791155769'
+ttId = '@pmalirz'
+description = 'Programowanie i architektura systemów (blog)'
 
 [build]
 writeStats = true
