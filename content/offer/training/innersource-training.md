@@ -1,7 +1,7 @@
 ---
 author: Przemek Malirz
 title: InnerSource
-code: training
+code: offer
 duration: 2h
 date: 2023-01-09
 description: InnerSource to skuteczna adaptacja filozofii Open Source za zamkniętymi drzwiami firmy. 

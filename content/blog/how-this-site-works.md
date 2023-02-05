@@ -26,7 +26,7 @@ Zatem smażymy!
   formatu _md_.
 * [Midjournej](https://midjourney.com/) - wszystkie obrazy (łącznie z logo, oprócz mojego zdjęcia :))
 * [Alpine.js](https://alpinejs.dev/) - stronka musi się ruszać, co nie?
-* [Github Pages](https://pages.github.com/) - stronka w końcu musi zostać opublikowana?
+* [GitHub Pages](https://pages.github.com/) - stronka w końcu musi zostać opublikowana?
 
 Strony w takiej formie na pewno nie rekomendowałbym osobom mało technicznym. W takich przypadkach bierzemy CMS'a jak
 Wordpress (prosto i przyjemnie = WYSWIG). W sumie również ja powinienem wybrać CMS, jednak postanowiłem się katować
@@ -41,16 +41,18 @@ HTTP.
 
 W telegraficznym skrócie konstrukcja mojej strony przebiegała następująco:
 
-1. **Przygotowanie szkieletu / wyglądu strony**. Czyli opracowanie szablonów (praca z HTML i CSS). Ten punkt powinno się
-   z założenia zrobić raz a dobrze. Podczas pracy nad materiałami będziemy poruszać sie w punktach 2 -> 3.
+1. **Przygotowanie szkieletu / wyglądu strony**. Czyli opracowanie szablonów (praca z HTML, CSS). Ten punkt powinno się
+   z założenia zrobić raz a dobrze. Podczas pracy nad materiałami będziemy poruszać sie w punktach 2 -> 3.   
+   Opracowując szablony, posługujemy się wstawkami sterującymi [text/template](https://pkg.go.dev/text/template) 
+   języka _Go_. 
 2. **Tworzenie kontentu**. Kontent (oferty, blog, o mnie) tworzę w plikach _md_. Pliki _md_ renderowane są przez Hugo do
    postaci HTML w cyklu budowania (czyli w kroku 3). 
 3. **Publikacja zmian**. Puszczam build Hugo i dostaje pakiet gotowy do wrzucenia na serwer (dla mnie builda uruchamia
-   Github actions).
+   GitHub actions).
 
-Podczas pracy nad edycją treśći (punkt 2) posługuję się trybem`--watch` Hugo. Jest to dokładnie coś co znamy z watch'a
+Podczas pracy nad edycją treści (punkt 2) posługuję się trybem`--watch` Hugo. Jest to dokładnie coś co znamy z watch'a
 npm. **Hugo** posiada wbudowany serwer, kompilując każdą zmianę (na Ctrl+S) do pamięci (opcjonalnie może zrzucać
-kombilaty na dysk). Jest to diabelnie szybki proces.
+kompilaty na dysk). Jest to diabelnie szybki proces.
 
 Zatem moja praca z **Hugo** składa się na:
 
@@ -58,16 +60,16 @@ Zatem moja praca z **Hugo** składa się na:
   wstawkami kodu **Golang** i użyciem API **Hugo**.
 * **Markdown** cała treść - oferty, blog, o mnie.
 
-Przykładowy kod Hugo, renderujący kafelki ofert na mojej głównej stronie:
+Przykładowy fragment szablonu _Hugo_, renderujący kafelki ofert na mojej głównej stronie:
 
 ```html
-
+<!-- Kod iteruje po plikach md, leżących w folderze "offer". Folder taki przez konwencję określa nam atrybut Sekcji. -->
 <main class="md:container mx-auto mb-auto sm:mt-12 mt-4 px-4 md:px-8 lg:px-24 2xl:px-48">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-4">
         {{range where .Site.Pages "Section" "offer" }}
-        {{if .IsPage}}
-        {{partial "offer-list-item.html" (dict "context" .)}}
-        {{ end }}
+            {{if .IsPage}}
+                {{partial "offer-list-item.html" (dict "context" .)}}
+            {{ end }}
         {{end}}
     </div>
 </main>
@@ -87,12 +89,12 @@ Mimo iż krótko używam **Hugo**, postaram sie wypisać zauważone fakty i ciek
 * **Draft i inne metadane** w plikach _md_ pozwalają łatwo sterować tym co, kiedy i jak publikujemy. Np ustawienie
   atrybutu _Draft_ na artykule w pliku _md_ pozwala nam zdecydować w trakcie builda czy publikujemy czy też nie
   _Draftowe_ artykuły.
-* **Strona za darmo** - tworzenie i infrastruktura nic nas nie kosztują. Hosting mamy na Github Pages. Pamiętajmy, że
+* **Strona za darmo** - tworzenie i infrastruktura nic nas nie kosztują. Hosting mamy na GitHub Pages. Pamiętajmy, że
   mówimy o stronie statycznej.
-* **Nauka** - poznałem Hugo, TailwindCSS i Alpine.js... i Github Pages oraz Midjournej.
+* **Nauka** - poznałem Hugo, TailwindCSS i Alpine.js... i GitHub Pages oraz Midjournej.
 * **i18n** - której muszę spróbować
-* **Aktywny Github** - projekt jest aktywny na Githubie, popularny i nawet często releasowany.
-* **Pluginy** - takie jak Discuss czy Google Analitics. Poza tym nie ma problemu z samodzielnymi wstawkami JS w naszych
+* **Aktywny GitHub** - projekt jest aktywny na GitHubie, popularny i nawet często releasowany.
+* **Pluginy** - takie jak Discuss czy Google Analytics. Poza tym nie ma problemu z samodzielnymi wstawkami JS w naszych
   szablonach. W końcu rzeźbimy niskopoziomowo z palca.
 * **Struktura folderów** - convention over configuration. Poprostu, foldery mają swoje przeznaczenie. Można je na siłę
   modyfikować ale po co?
@@ -112,15 +114,16 @@ Mimo iż krótko używam **Hugo**, postaram sie wypisać zauważone fakty i ciek
   na elementach HTML. Będę to próbował ugryżć użyciem babel. Zobaczymy.
 * **Markdown** - tak, dorzucam też MD do wad. Przejżystość artykułu w IntelliJ vs edytor WYSWIG Wordpress? Nie ma o czym
   mówić nawet. Ja tu pracuje z jakimiś ślaczkami, gwiazdkami i tagami. Oczywiście białymi na czarnym tle. Wiadomo.
-* **Wstawki Go** nie bardzo mi się podobają. Strasznie toporne jak dla mnie. Plus brak autocomplete i debug oczywiście
-  to metoda kroczącej dupy.
+* **Wstawki Go** nie bardzo mi się podobają ([text/template](https://pkg.go.dev/text/template)). Strasznie toporne jak 
+  dla mnie. Brak autocomplete, debug to metoda kroczącej dupy zaś ustawianie zmiennej przez 
+[.Scratch](https://gohugo.io/functions/scratch/) to jakiś żart.
 
 **👃Smell**
 
-* **One man army?** - przeglądając dokumentację, pomimo bogatego community i naprawdę wielu materiałów, wszędzie
+* **Czyżby One man army?** - przeglądając dokumentację, pomimo bogatego community i naprawdę wielu materiałów, wszędzie
   wyświetla się zdjęcie jednego kolegi (kudos). Czyżby projekt One man army? Zawsze zwracajcie na to uwagę! Ja
   absolutnie zawsze zwracam, ale tym razem zapomniałem :). Poza tym, któż nie słyszał o Hugo, który jest bardzo aktywnym
-  projektem na Githubie.
+  projektem na GitHubie.
 
 ### TailwindCSS
 
@@ -179,7 +182,7 @@ https://gohugo.io/content-management/formats/
 
 ### Midjourney
 
-Wszystkie, ale to absolutnie wszystkie grafiki wygenerowane są w Midjourney (logo, tło, obrazy w kafelkach ofert).
+Wszystkie, ale to absolutnie wszystkie grafiki wygenerowane są w _Midjourney_ (logo, tło, obrazy w kafelkach ofert).
 Bardzo fajny tool. Cierpi na drobne niuanse, ale nie będę się nad nimi rozwodził. Jestem pod wrażeniem tego, co
 zafundował nam świat AI ostatnimi czasy. Dla takich zastosowań jak moje jest to killer dla stockowych rozwiązań. Czyż to
 nie jest piękne?:
@@ -211,18 +214,18 @@ To jest to, czego potrzebowałem. Zobaczcie sami:
 To tyle z programowanie mojego menu. Otwieranie i zamykanie panelu to dodanie `x-data` z Alpine.js. Niesamowite co Ci
 programiści frontu potrafią wymyślić. Szacunek.
 
-### Github Pages
+### GitHub Pages
 
 Czyli dla nas infrastruktura. Serwer, na którym wdrażana jest nasza strona. _Hugo_ buduje wszystko do folderu 
-_public_, a folder ten wędruje sobie automatycznie na _Github Pages_. Wszystko się dzieje automatycznie poprzez 
-akcje Githuba. Akcje po poprawnym wywołaniu builda _Hugo_, commitują wynikowy folder _public_ na specjalnie nazwany 
+_public_, a folder ten wędruje sobie automatycznie na _GitHub Pages_. Wszystko się dzieje automatycznie poprzez 
+akcje GitHuba. Akcje po poprawnym wywołaniu builda _Hugo_, commitują wynikowy folder _public_ na specjalnie nazwany 
 ("gh-pages") branch naszego publicznego repozytorium (repo z tym branchem lub sam branch musi być publiczne). 
 
 W zasadzie sposób publikowania i commitowania artykułów skłonił mnie do wybrania takiego stosu. Zobaczcie, nie ma 
 tutaj CMS'owej bazy danych, która może paść i którą trzeba aktualizować i chuchać i dmuchać. Baza danych to nasze pliki 
-_md_ commitowane i pushowane na Githuba. Praca w kilka osób i rozwiązywanie konfliktów? Znamy to z pracy z Gitem.
-Dodatkowe zalety to to że możemy pracować na branchach oraz reviewować zmiany przed dopuszczeniem do publikacji.
-Backup bazy / naszych prac? Ja mam u siebie cały projekt, no i na Githubie. Wystarczy. Jak będę chciał to po prostu 
+_md_ commitowane i pushowane na GitHuba. Praca w kilka osób i rozwiązywanie konfliktów? Znamy to z pracy z Gitem.
+Dodatkowe zalety to to, że możemy pracować na branchach oraz reviewować zmiany przed dopuszczeniem do publikacji.
+Backup bazy / naszych prac? Ja mam u siebie cały projekt, no i na GitHubie. Wystarczy. Jak będę chciał to po prostu 
 kopia na pena i tyle.
 
 ## Wrażenia z pracy
@@ -232,7 +235,7 @@ Używam dwóch monitorów. Z jednej strony IntelliJ z drugiej przeglądarka, bł
 odświeżająca zmiany na Ctrl+S. Pisząc "błyskawicznie", mam na myśli mrugnięcie oka. Nie trwa to nawet pół sekundy.  
 _md_ jest od razu widoczny jako HTML.
 
-Jeżeli miałbym podać 2 największe wady (w stosunku np. do takiego Wordress), to pewnie byłyby to: przejrzystość 
+Jeżeli miałbym podać 2 największe wady (w stosunku np. do takiego Wordpress), to pewnie byłyby to: przejrzystość 
 podczas tworzenia tekstu oraz obrządki celem publikacji.
 
 Jaka jest różnica między CMS WYSWIG jak _Wordpress_ a statycznym generatorem stron jak _Hugo_?
