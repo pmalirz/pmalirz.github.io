@@ -189,8 +189,19 @@ nie jest piękne?:
 
 {{< figure src="/img/blog/how-this-site-works/robots-mj.png" class="flex max-w-xs" >}}
 
-Tak, zgadza się, logo nie jest wektorem. To nic, przeżyję. Czasy gdzie będę musiał drukować plakaty lub koszulki z 
-moim logo możliwe, że nie nadejdą, a jak już nadejdą to nie teraz.
+Z _Midjourney_ pracujemy poprzez bota na Discordzie wydając mu polecenia. Bot kolejkuje polecenie i po chwili wypluwa
+dla nas propozycje swoich wyobrażeń na temat tego, co opisaliśmy w poleceniu, w postaci 4 proponowanych obrazów.
+Za każdym razem wyrzuca zupełnie coś innego (nawet dla tego samego polecenia). Na darmowym koncie możemy poprosić
+o wygenerowanie 25 propozycji.
+
+Logo powstało w wyniku wywołania następującej komendy
+```shell
+/imagine propmpt: simple symbolic logo, cartoon like robot head, simple lines, abstract, colors, impressive, white 
+background --ar 3:2
+```
+
+Tak, zgadza się, logo nie jest wektorem. To nic, przeżyję. Czasy gdzie będę musiał drukować logo na plakaty lub 
+koszulki możliwe, że nie nadejdą.
 
 Jak już wygenerowałem logo w _Midjourney_, pozostało mi:
 * skonwertować go na png z przezroczystym tłem. Albo [online](https://www.remove.bg/upload), albo magic wand w 
