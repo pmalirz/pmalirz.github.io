@@ -3,6 +3,10 @@ languageCode = 'pl'
 title = 'Przemek Malirz'
 theme = 'trainer'
 
+enableRobotsTXT = true
+
+googleAnalytics = 'G-WRNHBDYF2B'
+
 [params]
 favicon = "favicon.ico"
 fbId = '998215791155769'
