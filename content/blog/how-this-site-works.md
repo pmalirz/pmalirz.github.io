@@ -190,8 +190,9 @@ Tak, zgadza się, logo nie jest wektorem. To nic, przeżyję. Czasy gdzie będę
 moim logo możliwe, że nie nadejdą, a jak już nadejdą to nie teraz.
 
 Jak już wygenerowałem logo w _Midjourney_, pozostało mi:
-* przerobić go na png z przezroczystym tłem: https://www.remove.bg/upload
-* oraz utworzyć dla logo favicon i ikony dla urządzeń: https://realfavicongenerator.net/
+* skonwertować go na png z przezroczystym tłem. Albo [online](https://www.remove.bg/upload), albo magic wand w 
+  [paint.net](https://www.getpaint.net/)
+* utworzyć dla logo favicon oraz ikony dla urządzeń: https://realfavicongenerator.net/
 
 Tyle o _Midjourney_. Polecam go gorąco, choć trzeba się do niego sporo nagadać, żeby uzyskać właściwy rezultat.
 
