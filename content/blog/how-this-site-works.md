@@ -35,9 +35,10 @@ Markdown'em.
 ### Hugo
 
 Miało być Gatsby 5. Jednak po jednodniowej, przegranej walce odpuszczam. Rozważając kilka innych możliwości, decyduję
-się w końcu na się na **Hugo**.
+się w końcu na **Hugo**.
 **Hugo** to po prostu maszynka, która tak samo, jak npm wypluje nam paczkę gotową do umieszczenia na dowolnym serwerze
-HTTP.
+HTTP. Nie ma tutaj mowy o SSR. Wszystko generujemy build time. Jeżeli zaś jest taka potrzeba, resztę możemy 
+pozostawić JavaScriptowi po stronie przeglądarki. 
 
 W telegraficznym skrócie konstrukcja mojej strony przebiegała następująco:
 
