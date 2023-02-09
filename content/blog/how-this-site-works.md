@@ -36,7 +36,7 @@ Markdown'em.
 
 Miało być Gatsby 5. Jednak po jednodniowej, przegranej walce odpuszczam. Rozważając kilka innych możliwości, decyduję
 się w końcu na się na **Hugo**.
-**Hugo** to po prostu maszynka, która tak samo jak npm, wypluje nam paczkę gotową do umieszczenia na dowolnym serwerze
+**Hugo** to po prostu maszynka, która tak samo, jak npm wypluje nam paczkę gotową do umieszczenia na dowolnym serwerze
 HTTP.
 
 W telegraficznym skrócie konstrukcja mojej strony przebiegała następująco:
@@ -85,7 +85,7 @@ Mimo iż krótko używam **Hugo**, postaram sie wypisać zauważone fakty i ciek
   mrugnięcie oka.
 * **Markdown** czyli seniorzy programują swoje blogi, a nie je piszą, right? My używamy do edycji VS Code.
 * **Totalna kontrola** nad każdym calem swojego rozwiązania. Uwielbiam to i tyle. Dlatego jestem antyfanem magii w
-  kodowaniu (jak np. Dozer lub Lombook). Ilu czytelników własnie straciłem? 😈
+  kodowaniu (jak np. Dozer lub Lombook). Ilu czytelników właśnie straciłem? 😈
 * **Draft i inne metadane** w plikach _md_ pozwalają łatwo sterować tym co, kiedy i jak publikujemy. Np ustawienie
   atrybutu _Draft_ na artykule w pliku _md_ pozwala nam zdecydować w trakcie builda czy publikujemy czy też nie
   _Draftowe_ artykuły.
@@ -108,11 +108,12 @@ Mimo iż krótko używam **Hugo**, postaram sie wypisać zauważone fakty i ciek
 
 **👎Nie bardzo lubię**
 
-* **HTML i CSS na start** może zniechęcić. Układanie flex, grid, typografia dla roznych ekranów? Tak, niestety. Bonusem
+* **HTML i CSS na start** może zniechęcić. Układanie flex, grid, typografia dla różnych ekranów? Tak, niestety. Bonusem
   jest to, że dodatkowo nabywamy wiedzę (chwilową, bo układania div'ów nie da się zapamiętać).
 * **CSS w trybie watch** - coś mi to nie chce zadziałać. Mam problem z uwzględnianiem zmian podczas modyfikacji `class`
-  na elementach HTML. Będę to próbował ugryżć użyciem babel. Zobaczymy.
-* **Markdown** - tak, dorzucam też MD do wad. Przejżystość artykułu w IntelliJ vs edytor WYSWIG Wordpress? Nie ma o czym
+  na elementach HTML. Będę to próbował ugryźć użyciem babel. Zobaczymy.
+* **Markdown** - tak, dorzucam też MD do wad. Przejrzystość artykułu w IntelliJ vs edytor WYSWIG Wordpress? Nie ma o 
+  czym
   mówić nawet. Ja tu pracuje z jakimiś ślaczkami, gwiazdkami i tagami. Oczywiście białymi na czarnym tle. Wiadomo.
 * **Wstawki Go** nie bardzo mi się podobają ([text/template](https://pkg.go.dev/text/template)). Strasznie toporne jak 
   dla mnie. Brak autocomplete, debug to metoda kroczącej dupy zaś ustawianie zmiennej przez 
@@ -127,14 +128,15 @@ Mimo iż krótko używam **Hugo**, postaram sie wypisać zauważone fakty i ciek
 
 ### TailwindCSS
 
-Mogę powiedzieć, że jestem zakochany w Tailwind. Do tego stopnia, iż przez chwilę zastanawiałem się nad jego zakupem. 
-Cena jest dość wysoka, natomiast trzeba przyznać, że model sprzedaży jest bardzo fajny: 
-płacisz raz i masz dostęp na zawsze (łącznie z szablonami). Darmowa wersja, którą używam, jest jak najbardziej okej,
-jednak nie mamy w niej dostępu do gotowych, często fantastycznie wyglądających i skomplikowanych komponentów.
-Musimy je dziergać sami. Ja, bardzo skomplikowanych komponentów nie miałem, jednak już np. kafelki z ofertami (główna 
-strona), czy badges musiałem dziergać sam. 
-Tailwind działa na zasadzie znanego podejścia do stylowania elementów poprzez dodawanie różnych klas.
-Zatem komponujemy wygląd komponentu poprzez określanie wyglądu różnych jego elementów osobno.
+Przyznaję, że z Tailwind pracuje mi się świetnie. Do tego stopnia, iż przez chwilę zastanawiałem się nad jego zakupem. 
+Cena jest dość wysoka, natomiast trzeba przyznać, że model sprzedaży jest bardzo atrakcyjny: 
+płacisz raz i masz dostęp na zawsze do wszystkich komponentów, aktualizacji i szablonów. Darmowa wersja, 
+którą używam jest dla mnie póki co wystarczająca, jednak nie ma w niej gotowych, często fantastycznie 
+wyglądających i skomplikowanych komponentów.
+Musimy zatem dziergać je sami. Ja, bardzo skomplikowanych komponentów nie miałem, jednak już np. kafelki z ofertami 
+(główna strona), czy badges musiałem składać sam. Po prostu Tailwind, w wersji darmowej, dostarcza nam samych klas CSS 
+utility. Tailwind działa na zasadzie znanego podejścia do stylowania elementów (chociażby z Bootstrap) poprzez 
+dodawanie do elementów HTML różnych atomowych klas.  Oto przykład:
 
 ```html
 <main class="container max-w-3xl mx-auto mb-auto sm:mt-12 mt-4 px-2">
