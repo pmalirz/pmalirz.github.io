@@ -30,9 +30,16 @@
     {{- if .Site.IsServer }}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 <!--    <link rel="stylesheet" href="/css/gen.css">-->
-    {{ else }}
+    {{ else -}}
     {{- $styles := $styles | minify | fingerprint | resources.PostProcess -}}
     <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ end -}}
+
+    {{- if .Page.Store.Get "hasMermaid" }}
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'forest' });
+    </script>
     {{ end -}}
 
     {{ template "_internal/google_analytics.html" . }}
