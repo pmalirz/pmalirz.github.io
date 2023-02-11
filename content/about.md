@@ -57,8 +57,3 @@ Skontaktuj się ze mną bezpośrednio:
 
 Na głównej stronie będę stopniowo uzupełniał dostępne oferty. Można już śmiało pytać o każdą pozycję, natomiast 
 ponieważ cierpię na natrętny perfekcjonizm, potrzebuję trochę czasu na przyzwoite opracowanie każdej pozycji.
-
-## Dlaczego za darmo?
-
-Niemożliwe, nic nie jest za darmo. Moim planem jest pomoc, budowanie własnej marki i sieci kontaktów. 
-Pracuję na etacie, więc jestem głównie dostępny w godzinach popołudniowych i w weekendy.
