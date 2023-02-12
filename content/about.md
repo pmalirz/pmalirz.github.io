@@ -46,9 +46,10 @@ przyswojenia formę.
 
 **Zapraszam na konsultacje, prezentacje, szkolenia, warsztaty, mentoring oraz do czytania mojego subiektywnego bloga.**
 Ponieważ budowanie relacji i kontaktów wyłącznie pomaga, dlatego koniecznie znajdź mnie na: 
-* [Twitter](https://twitter.com/pmalirz), 
-* Facebook, 
-* [LinkedIn](https://www.linkedin.com/in/przemyslawmalirz/). 
+* [Twitter](https://twitter.com/pmalirz)
+* Facebook (wip) 
+* [LinkedIn](https://www.linkedin.com/in/przemyslawmalirz/)
+* [GitHub](https://github.com/pmalirz/)
 
 Skontaktuj się ze mną bezpośrednio:
 * 📧 [p.malirz@gmail.com](mailto:p.malirz@gmail.com)
