@@ -8,3 +8,7 @@ description: InnerSource to skuteczna adaptacja filozofii Open Source za zamkni�
 keywords: [warsztaty, programowanie]
 weight: 11
 ---
+Przepraszam, pracuję nad zawartością mojej oferty. Bardzo Ci dziękuję za cierpliwość!\
+Wkrótce szczegóły!
+
+Tymczasem zapraszam do kontaktu ("O mnie").

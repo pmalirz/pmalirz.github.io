@@ -8,3 +8,7 @@ description: Oferuję profesjonalne usługi konsultingowe z zakresu programowani
 keywords: [warsztaty, programowanie]
 weight: 30
 ---
+Przepraszam, pracuję nad zawartością mojej oferty. Bardzo Ci dziękuję za cierpliwość!\
+Wkrótce szczegóły!
+
+Tymczasem zapraszam do kontaktu ("O mnie").

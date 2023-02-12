@@ -8,3 +8,7 @@ description: Microfrontends jako praktyczne podejście do projektowania skalowal
 keywords: [warsztaty, programowanie]
 weight: 10
 ---
+Przepraszam, pracuję nad zawartością mojej oferty. Bardzo Ci dziękuję za cierpliwość!\
+Wkrótce szczegóły!
+
+Tymczasem zapraszam do kontaktu ("O mnie").

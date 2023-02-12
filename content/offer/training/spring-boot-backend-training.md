@@ -8,3 +8,7 @@ description: Budujemy aplikację serwerową opartą o Spring Boot, Java, JPA / C
 keywords: [warsztaty, programowanie]
 weight: 12
 ---
+Przepraszam, pracuję nad zawartością mojej oferty. Bardzo Ci dziękuję za cierpliwość!\
+Wkrótce szczegóły!
+
+Tymczasem zapraszam do kontaktu ("O mnie").

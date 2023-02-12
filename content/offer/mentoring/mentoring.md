@@ -8,3 +8,7 @@ description: Program mentoringowy kieruję do osób chcących rozpocząć przygo
 keywords: [warsztaty, programowanie]
 weight: 40
 ---
+Przepraszam, pracuję nad zawartością mojej oferty. Bardzo Ci dziękuję za cierpliwość!\
+Wkrótce szczegóły!
+
+Tymczasem zapraszam do kontaktu ("O mnie").
