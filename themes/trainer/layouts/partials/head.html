@@ -42,5 +42,7 @@
     </script>
     {{ end -}}
 
-    {{ template "_internal/google_analytics.html" . }}
+    {{- if not (.Site.IsServer) }}
+        {{ template "_internal/google_analytics.html" . }}
+    {{ end -}}
 </head>
