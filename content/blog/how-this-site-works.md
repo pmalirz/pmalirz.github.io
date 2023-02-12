@@ -37,8 +37,8 @@ Markdown'em.
 Miało być Gatsby 5. Jednak po jednodniowej, przegranej walce odpuszczam. Rozważając kilka innych możliwości, decyduję
 się w końcu na **Hugo**.
 **Hugo** to po prostu maszynka, która tak samo, jak npm wypluje nam paczkę gotową do umieszczenia na dowolnym serwerze
-HTTP. Nie ma tutaj mowy o SSR. Wszystko generujemy build time. Jeżeli zaś jest taka potrzeba, resztę możemy 
-pozostawić JavaScriptowi po stronie przeglądarki. 
+HTTP. Nie ma tutaj mowy o SSR. **Wszystko generujemy build time**. Jeżeli zaś jest taka potrzeba, resztę możemy 
+pozostawić JavaScriptowi po stronie przeglądarki (jak JS do otwierania i chowanie menu lub diagramy `mermaid`).
 
 W telegraficznym skrócie konstrukcja mojej strony przebiegała następująco:
 
@@ -245,28 +245,29 @@ kopia na pena i tyle.
 ## Dziennik pracy
 
 1. Wstępna inicjalizacja i konfiguracja projektu
-   1. Globalna instalacja Hugo ```scoop install hugo-extended```
-   2. Inicjalizacja projektu npm ```npm init```
-   3. Inicjalizacja repozytorium git ```git init```
-   4. Utworzenie repozytorium na GitHubie ```pmalirz.github.io``` (nazwa wymuszona przez GitHub Pages)
-      1. Utworzenie brancha ```/main```
-      2. Utworzenie brancha ```/gh-pages``` - branch techniczny, do którego trafia skompilowany kod z brancha /main 
+   1. Globalna instalacja Hugo `scoop install hugo-extended`
+   2. Inicjalizacja projektu npm `npm init`
+   3. Inicjalizacja repozytorium git `git init`
+   4. Utworzenie repozytorium na GitHubie `pmalirz.github.io` (nazwa wymuszona przez GitHub Pages)
+      1. Utworzenie brancha `/main`
+      2. Utworzenie brancha `/gh-pages` - branch techniczny, do którego trafia skompilowany kod z brancha /main 
          (czyli zawartosc katalogu _public_ tworzonego przez build _Hugo_). GitHub Actions sam wrzuca kompilat na 
          tego brancha.
          GitHub Pages releasuje)
    5. Zakup i konfiguracja domeny malirz.pl
-      1. Ręczna konfiguracja DNS w panelu dostawcy domeny ```przemek.malirz.pl	3600	CNAME	pmalirz.github.io```  
-      2. Konfiguracja domeny na repozytorium GitHub ```przemek.malirz.pl```
+      1. Ręczna konfiguracja DNS w panelu dostawcy domeny `przemek.malirz.pl	3600	CNAME	pmalirz.github.io`  
+      2. Konfiguracja domeny na repozytorium GitHub `przemek.malirz.pl`
          https:\//github.com/**[user]/[user].github.io**/settings/pages
 2. Początkowa konfiguracja strony
    1. Instalacja potrzebnych bibliotek do obsługi CSS i JS
-      1. Instalacja TailwindCSS ```npm i -D tailwindcss@latest postcss@latest autoprefixer@latest``` \
+      1. Instalacja TailwindCSS \
+         `npm i -D tailwindcss@latest postcss@latest autoprefixer@latest` \
          Sprawdź, w jaki sposób _Hugo_ buduje CSS bundle wrenderowując go w stronę: 
          ```js
          // Poszukaj resources.PostCSS
          themes/trainer/partials/head.html   
          ```
-      2. Instalacja Alpine.js ```npm i -D alpinejs``` \
+      2. Instalacja Alpine.js `npm i -D alpinejs` \
          Sprawdź w moim repozytorium pliki, w których globalnie odpalam Alpine.js dla strony:
          ```js
          // inicjalizacja Alpine.js
@@ -278,23 +279,23 @@ kopia na pena i tyle.
          ``` 
    2. Konfiguracja parametrów _Hugo_ w pliku ```config.toml``` 
    3. Utworzenie szkieletu folderów _Hugo_
-   4. Utworzenie własnego theme w _Hugo_. Folder ```themes/trainer```
+   4. Utworzenie własnego theme w _Hugo_. Folder `themes/trainer`
    5. Praca nad szablonami HTML w połączeniu z kodem sterującym _Hugo_
-      1. Zerknij koniecznie do ```themes/trainer/partials/head.html```
+      1. Zerknij koniecznie do `themes/trainer/partials/head.html`
          Znajdziesz w nim m.in. konfigurację Google Analytics oraz protokołu [Open Graph](https://ogp.me/).
          Jest też [Mermaid](https://mermaid.js.org/), którego jeszcze nie użyłem (ale działa)
 3. Tworzenie kontentu
-   1. Uruchamiam lokalnie serwer _Hugo_ ```npm run watch:hugo``` (zadanie zdefiniowane w ```package.json```). \
+   1. Uruchamiam lokalnie serwer _Hugo_ `npm run watch:hugo` (zadanie zdefiniowane w `package.json`). \
       W IntelliJ na Ctrl+S podglądam zmiany na przeglądarce.
-   2. Tworzenie Bloga - pliki _md_ w folderze ```content/blog```
-   2. Tworzenie Ofert - pliki _md_ w folderze ```content/offer```
-      1. Oferty renderowane są przez szablon ```layoyts/index.html``` iterując po plikach _md_. Dla każdego pliku 
-         _md_ tworzony jest kafelek, którego szablon jest w ```layouts/partials/offer-list-item.html```
+   2. Tworzenie Bloga - pliki _md_ w folderze `content/blog`
+   2. Tworzenie Ofert - pliki _md_ w folderze `content/offer`
+      1. Oferty renderowane są przez szablon `layoyts/index.html` iterując po plikach _md_. Dla każdego pliku 
+         _md_ tworzony jest kafelek, którego szablon jest w `layouts/partials/offer-list-item.html`
 4. Publikacja
-   1. Git push zmian brancha ```/main```  na zdalne repozytorium ```przemek.malirz.pl```
+   1. Git push zmian brancha `/main`  na zdalne repozytorium `przemek.malirz.pl`
       1. Jeżeli publikujemy pliki _md_, które są pracami w toku, wystarczy w ich nagłówku ustawić zmienną _Hugo_ 
-         ```Draft: true``` 
-   2. GitHub Actions samoczynnie zbuduje i wcommituje zmiany do brancha ```/gh-pages```
+         `Draft: true` 
+   2. GitHub Actions samoczynnie zbuduje i wcommituje zmiany do brancha `/gh-pages`
    3. GitHub Pages pobiera każdą zmianę, udostępniając ją w domenie publicznej (zmiany są widoczne na internecie)
       Uwaga! Publikacja działa z opóźnieniem, możesz na ten temat poczytać w internecie
    
