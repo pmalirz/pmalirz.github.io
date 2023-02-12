@@ -7,6 +7,8 @@ enableRobotsTXT = true
 
 googleAnalytics = 'G-WRNHBDYF2B'
 
+disqusShortname = 'przemek-malirz-pl'
+
 [params]
 favicon = "favicon.ico"
 fbId = '998215791155769'
