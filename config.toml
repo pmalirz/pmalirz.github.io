@@ -1,4 +1,4 @@
-baseURL = 'http://przemek.malirz.pl/'
+baseURL = 'https://przemek.malirz.pl/'
 languageCode = 'pl'
 title = 'Przemek Malirz'
 theme = 'trainer'
