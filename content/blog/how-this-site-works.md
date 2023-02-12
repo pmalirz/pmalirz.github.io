@@ -185,8 +185,8 @@ https://gohugo.io/content-management/formats/
 
 ### Midjourney
 
-Wszystkie, ale to absolutnie wszystkie grafiki wygenerowane są w _Midjourney_ (logo, tło, obrazy w kafelkach ofert).
-Bardzo fajny tool. Cierpi na drobne niuanse, ale nie będę się nad nimi rozwodził. Jestem pod wrażeniem tego, co
+Wszystkie, ale to absolutnie wszystkie grafiki wygenerowane są w _Midjourney_ (tło, obrazy w kafelkach ofert).
+Bardzo fajne narzędzie. Cierpi na drobne niuanse, ale nie będę się nad nimi rozwodził. Jestem pod wrażeniem tego, co
 zafundował nam świat AI ostatnimi czasy. Dla takich zastosowań jak moje jest to killer dla stockowych rozwiązań. Czyż to
 nie jest piękne?:
 
@@ -197,19 +197,10 @@ dla nas propozycje swoich wyobrażeń na temat tego, co opisaliśmy w poleceniu,
 Za każdym razem wyrzuca zupełnie coś innego (nawet dla tego samego polecenia). Na darmowym koncie możemy poprosić
 o wygenerowanie 25 propozycji.
 
-Logo powstało w wyniku wywołania następującej komendy
+Przykładowa komenda
 ```shell
-/imagine propmpt: simple symbolic logo, cartoon like robot head, simple lines, abstract, colors, impressive, white 
-background --ar 3:2
+/imagine propmpt: robotic pancakes, colorful --ar 3:2
 ```
-
-Tak, zgadza się, logo nie jest wektorem. To nic, przeżyję. Czasy gdzie będę musiał drukować logo na plakaty lub 
-koszulki możliwe, że nie nadejdą.
-
-Jak już wygenerowałem logo w _Midjourney_, pozostało mi:
-* skonwertować go na png z przezroczystym tłem. Albo [online](https://www.remove.bg/upload), albo magic wand w 
-  [paint.net](https://www.getpaint.net/)
-* utworzyć dla logo favicon oraz ikony dla urządzeń: https://realfavicongenerator.net/
 
 Tyle o _Midjourney_. Polecam go gorąco, choć trzeba się do niego sporo nagadać, żeby uzyskać właściwy rezultat.
 
@@ -284,6 +275,7 @@ kopia na pena i tyle.
       1. Zerknij koniecznie do `themes/trainer/partials/head.html`
          Znajdziesz w nim m.in. konfigurację Google Analytics oraz protokołu [Open Graph](https://ogp.me/).
          Jest też [Mermaid](https://mermaid.js.org/), którego jeszcze nie użyłem (ale działa)
+   6. Utworzenie logo i wygenerowanie dla niego kolekcji favicons (https://realfavicongenerator.net/) 
 3. Tworzenie kontentu
    1. Uruchamiam lokalnie serwer _Hugo_ `npm run watch:hugo` (zadanie zdefiniowane w `package.json`). \
       W IntelliJ na Ctrl+S podglądam zmiany na przeglądarce.
