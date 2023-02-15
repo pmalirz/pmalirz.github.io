@@ -4,38 +4,68 @@ title = 'Przemek Malirz'
 theme = 'trainer'
 
 enableRobotsTXT = true
-
 googleAnalytics = 'G-WRNHBDYF2B'
-
 disqusShortname = 'przemek-malirz-pl'
+
+defaultContentLanguage = 'pl'
 
 [params]
 favicon = "favicon.ico"
 fbId = '998215791155769'
 ttId = '@pmalirz'
-description = 'Programowanie i architektura systemów (blog)'
+description = 'Szkolenia - Programowanie i architektura systemów'
 
 [build]
 writeStats = true
 
-[menu]
-[[menu.main]]
+[languages]
+[languages.pl]
+languageName = 'Polski'
+contentDir = 'content/pl'
+weight = 1
+
+[languages.pl.menu]
+[[languages.pl.menu.main]]
 identifier = 'offer'
 name = 'offer'
 title = 'Oferta'
 url = '/'
 weight = 1
-[[menu.main]]
+[[languages.pl.menu.main]]
 identifier = 'blog'
 name = 'blog'
 url = '/blog/'
 title = 'Blog'
 weight = 2
-[[menu.main]]
+[[languages.pl.menu.main]]
 identifier = 'about'
 name = 'about'
 url = '/about/'
 title = 'O mnie'
+weight = 3
+
+[languages.en]
+languageName = 'English'
+contentDir = 'content/en'
+weight = 2
+[languages.en.menu]
+[[languages.en.menu.main]]
+identifier = 'offer'
+name = 'offer'
+title = 'Offer'
+url = '/'
+weight = 1
+[[languages.en.menu.main]]
+identifier = 'blog'
+name = 'blog'
+url = '/blog/'
+title = 'Blog'
+weight = 2
+[[languages.en.menu.main]]
+identifier = 'about'
+name = 'about'
+url = '/about/'
+title = 'About'
 weight = 3
 
 # syntax highlight settings

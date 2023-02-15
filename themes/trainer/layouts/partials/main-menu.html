@@ -47,9 +47,9 @@
                         {{ $menuItemURL := .URL | relLangURL }}
 
                         {{ if eq $menuItemURL $pageURL }}
-                        <a href="{{ .URL }}" class="bg-gray-800 text-white border border-stone-400 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">{{ .Title }}</a>
+                        <a href="{{ .URL | absLangURL }}" class="bg-gray-800 text-white border border-stone-400 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">{{ .Title }}</a>
                         {{ else }}
-                        <a href="{{ .URL }}" class="hover:bg-gray-700 hover:text-white text-gray-800 px-3 py-2 rounded-md text-sm font-medium">{{ .Title }}</a>
+                        <a href="{{ .URL | absLangURL }}" class="hover:bg-gray-700 hover:text-white text-gray-800 px-3 py-2 rounded-md text-sm font-medium">{{ .Title }}</a>
                         {{ end }}
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
@@ -57,6 +57,9 @@
 
                     </div>
                 </div>
+            </div>
+            <div class="absolute inset-y-0 right-0 my-auto flex-shrink-0 flex">
+                <button x-data="switcher" @click="switchLang()" class="inline-block mr-2 fi" :class="'fi-'+visibleFlag"></button>
             </div>
         </div>
     </div>
@@ -73,12 +76,14 @@
             {{ $menuItemURL := .URL | relLangURL }}
 
             {{ if eq $menuItemURL $pageURL }}
-            <a href="{{ .URL }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">{{ .Title }}</a>
+            <a href="{{ .URL | absLangURL }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">{{ .Title }}</a>
             {{ else }}
-            <a href="{{ .URL }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ .Title }}</a>
+            <a href="{{ .URL | absLangURL }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ .Title }}</a>
             {{ end }}
 
             {{ end }}
+
+            <button x-data="switcher" @click="switchLang()" class="hover:bg-gray-700 px-3 py-2 inline-block mr-2 flag-icon " :class="'flag-icon-'+visibleFlag"></button>
         </div>
     </div>
 </nav>

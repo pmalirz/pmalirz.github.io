@@ -3,7 +3,7 @@ author: Przemek Malirz
 title: Pierwszy naleśnik 🥞
 code: blog 
 date: 2023-01-30 
-description: Technikalia strony przemek.malirz.pl 
+description: Budowanie bloga z użyciem Hugo, Tailwind i GitHub Pages z odrobiną Alpine.js i Midjourney 
 keywords: [hugo, tailwind, alpine.js, midjourney, markdown, github pages]
 weight: 1
 ---
@@ -207,17 +207,24 @@ Tyle o _Midjourney_. Polecam go gorąco, choć trzeba się do niego sporo nagada
 ### Alpine.js
 
 Strzał w 10. Szukałem czegoś zwięzłego, co doda klikalność do mojego menu, w trybie małego ekranu. Czyli otwórz i 
-schowaj menu. To cała moja dynamika na stronie (na dzień pisania tekstu). Czy ktoś wybrałby tutaj Angulara? 
-Trafiłem na Alpine.js, który obiecuje niezwykłą prostotę i przyjemność użytkowania. 
-To jest to, czego potrzebowałem. Zobaczcie sami:
+schowaj menu lub przełącz język strony. To cała moja dynamika na stronie (na dzień pisania tekstu). Czy ktoś wybrałby 
+tutaj Angulara? Trafiłem na Alpine.js, który obiecuje niezwykłą prostotę i przyjemność użytkowania. 
+To jest to, czego potrzebowałem. Zobaczcie sami, jak pokazuje/chowam menu mobilne. Plik szablonu menu znajdziecie w 
+`themes/trainer/layouts/partials/main-menu.html`.
 
 ```html
-<nav x-data="{ open: false }">
+<nav x-data="{ open: false }">    
+    <!-- Mobile menu button-->
+    <button @click="open = ! open" type="button" />
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu" x-show="open">    
 </nav>
 ```
 
-To tyle z programowanie mojego menu. Otwieranie i zamykanie panelu to dodanie `x-data` z Alpine.js. Niesamowite co Ci
-programiści frontu potrafią wymyślić. Szacunek.
+To tyle z programowanie mojego menu. Zero deklaracji zmiennych w JS. Dla menu wystarczyło zadeklarować zmienną w 
+`x-data`. Otwieranie i zamykanie panelu to dodanie `x-data` z Alpine.js. Niesamowite co Ci programiści frontu 
+potrafią wymyślić. Szacunek.
 
 ### GitHub Pages
 
