@@ -21,7 +21,7 @@ let translationSwitcher = function () {
             if (isEnPath) {
                 window.location = window.location.pathname.replace('/en', '')
             } else {
-                window.location = '/en/' + window.location.pathname
+                window.location = '/en' + window.location.pathname
             }
         },
     }
