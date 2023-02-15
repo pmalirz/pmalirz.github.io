@@ -4,7 +4,7 @@ title: Mentoring
 code: offer
 duration: w przygotowaniu
 date: 2023-01-09
-description: Program mentoringowy kieruję do osób chcących rozpocząć przygodę z IT oraz osób stawiających pierwsze kroki w zawodzie. 
+description: Program mentoringowy skierowany do osób chcących rozpocząć przygodę z IT oraz osób stawiających pierwsze kroki w zawodzie
 keywords: [warsztaty, programowanie]
 weight: 40
 ---

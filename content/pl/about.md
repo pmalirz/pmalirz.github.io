@@ -2,14 +2,14 @@
 author: Przemek Malirz
 title: O mnie
 date: 2023-01-09
-description: O mnie
+description: Programowanie i Architektura IT - Oferuję konsultacje, prezentacje, szkolenia, warsztaty, mentoring!
 keywords: [przemekmalirz, malirz, about, omnie, konsultacje, wsparcie techniczne, architektura it, programowanie, warsztaty, szkolenia]
 type: about
 ---
 
 ## Bio
 
-Nazywam się **Przemek Malirz** i jestem architektem z wieloletnim doświadczeniem w projektowaniu i
+Nazywam się **Przemek Malirz**. Jestem architektem oraz programistą z wieloletnim doświadczeniem w projektowaniu i
 implementacji różnej wielkości systemów. Swoje doświadczenie zdobywałem w różnych dziedzinach biznesu,
 takich jak geodezja, grafika, telekomunikacja, ubezpieczenia i usługi finansowe.
 Moim celem jest projektowanie pragmatycznej i bezpiecznej architektury, która ułatwia
