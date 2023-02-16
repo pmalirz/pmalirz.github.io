@@ -1,11 +1,17 @@
-<footer class="bottom-0 w-full p-2 mt-8 text-xs text-center text-gray-700 border-t border-zinc-400 bg-zinc-50 bg-opacity-70 z-0">
-    <!--    <div>
-            <p>made with <a href="https://gohugo.io" class="underline hover:text-blue-400">Hugo</a>,
-                <a href="https://tailwindcss.com" class="underline hover:text-blue-400">Tailwind</a>,
-                <a href="https://midjourney.com/" class="underline hover:text-blue-400">Midjourney</a>
-        </div>-->
+{{ define "main" }}
+<main class="container max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mb-auto sm:mt-12 mt-8 px-2">
+    {{ $pageName := path.BaseName .File }}
+    {{ $imageName := printf "%s%s%s" "**/" $pageName ".jpg" }}
+    {{ $image := resources.GetMatch $imageName }}
 
+    {{ if $image }}
 
+    <div class="w-full h-96 overflow-hidden rounded-t-xl">
+        <img class="w-full h-full object-cover" src="{{$image.Permalink}}">
+    </div>
+    {{ end }}
+    <article class="bg-zinc-100 px-8 sm:px-16 py-8 mx-auto rounded-b-xl text-justify prose prose-sm prose-sm:prose-pre:overflow-x-auto md:prose max-w-none md:max-w-none prose-zinc md:prose-zinc prose-a:text-sky-700 md:prose-a:text-sky-700 hover:prose-a:text-sky-800 prose-img:rounded-xl">
+         <h1>{{ .Title }}</h1>
         <div class="flex justify-center items-center space-x-4 text-gray-700">
             <!-- Github -->
             <a href="https://github.com/pmalirz" target="_blank" type="button">
@@ -28,5 +34,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" class="w-7 h-7"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
             </a>
         </div>
+        {{ .Content }}
+    </article>
 
-</footer>
+    <article class="bg-blue-50 mt-4 px-8 sm:px-16 py-8 mx-auto rounded-xl text-justify prose prose-sm prose-sm:prose-pre:overflow-x-auto md:prose max-w-none md:max-w-none prose-zinc md:prose-zinc prose-a:text-sky-700 md:prose-a:text-sky-700 hover:prose-a:text-sky-800 prose-img:rounded-xl">
+        {{ template "_internal/disqus.html" . }}
+    </article>
+</main>
+{{ end }}
