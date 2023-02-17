@@ -1,10 +1,9 @@
 ---
 author: Przemek Malirz
-title: First pancake 🥞
+title: Pierwszy naleśnik 🥞
 code: blog 
-date: 2023-01-30
-draft: true
-description: Building blog with use of Hugo, Tailwind and GitHub Pages with just a tad of Alpine.js and Midjuourney 
+date: 2023-01-30 
+description: Budowanie bloga z użyciem Hugo, Tailwind i GitHub Pages z odrobiną Alpine.js i Midjourney 
 keywords: [hugo, tailwind, alpine.js, midjourney, markdown, github pages]
 weight: 1
 ---
@@ -191,7 +190,7 @@ Bardzo fajne narzędzie. Cierpi na drobne niuanse, ale nie będę się nad nimi 
 zafundował nam świat AI ostatnimi czasy. Dla takich zastosowań jak moje jest to killer dla stockowych rozwiązań. Czyż to
 nie jest piękne?:
 
-{{< figure src="/img/blog/how-this-site-works/robots-mj.png" class="flex max-w-xs" >}}
+{{< figure src="/img/blog/hugo-tailwind-githubpages/robots-mj.png" class="flex max-w-xs" >}}
 
 Z _Midjourney_ pracujemy poprzez bota na Discordzie wydając mu polecenia. Bot kolejkuje polecenie i po chwili wypluwa
 dla nas propozycje swoich wyobrażeń na temat tego, co opisaliśmy w poleceniu, w postaci 4 proponowanych obrazów.
@@ -208,17 +207,24 @@ Tyle o _Midjourney_. Polecam go gorąco, choć trzeba się do niego sporo nagada
 ### Alpine.js
 
 Strzał w 10. Szukałem czegoś zwięzłego, co doda klikalność do mojego menu, w trybie małego ekranu. Czyli otwórz i 
-schowaj menu. To cała moja dynamika na stronie (na dzień pisania tekstu). Czy ktoś wybrałby tutaj Angulara? 
-Trafiłem na Alpine.js, który obiecuje niezwykłą prostotę i przyjemność użytkowania. 
-To jest to, czego potrzebowałem. Zobaczcie sami:
+schowaj menu lub przełącz język strony. To cała moja dynamika na stronie (na dzień pisania tekstu). Czy ktoś wybrałby 
+tutaj Angulara? Trafiłem na Alpine.js, który obiecuje niezwykłą prostotę i przyjemność użytkowania. 
+To jest to, czego potrzebowałem. Zobaczcie sami, jak pokazuje/chowam menu mobilne. Plik szablonu menu znajdziecie w 
+`themes/trainer/layouts/partials/main-menu.html`.
 
 ```html
-<nav x-data="{ open: false }">
+<nav x-data="{ open: false }">    
+    <!-- Mobile menu button-->
+    <button @click="open = ! open" type="button" />
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu" x-show="open">    
 </nav>
 ```
 
-To tyle z programowanie mojego menu. Otwieranie i zamykanie panelu to dodanie `x-data` z Alpine.js. Niesamowite co Ci
-programiści frontu potrafią wymyślić. Szacunek.
+To tyle z programowanie mojego menu. Zero deklaracji zmiennych w JS. Dla menu wystarczyło zadeklarować zmienną w 
+`x-data`. Otwieranie i zamykanie panelu to dodanie `x-data` z Alpine.js. Niesamowite co Ci programiści frontu 
+potrafią wymyślić. Szacunek.
 
 ### GitHub Pages
 
@@ -312,11 +318,7 @@ W _Hugo_ używamy back-endu, treści zaś programujemy i wdrażamy.
 ## Dziękuję 🙏
 
 Naleśnik wyszedł taki, jaki miał wyjść. Napiszę tylko, że pierwszego naleśnika lubię w domu zjadać ja. Jest gruby,
-krzywy i tłusty. Czy ktoś się nim poczęstował? Nie wiem, ale z obgryzionymi paznokciami będę sprawdzał na Google
+krzywy i tłusty. Czy ktoś się nim poczęstował? Nie wiem, ale z obgryzionymi paznokciami będę sprawdzał Google
 Analytics.
-
-Chcę na koniec napisać, iż jestem pod wrażeniem technologi, z którymi mam tutaj do czynienia. Wymagana wiedza do ich
-obsługi tak naprawdę daje jedynie frajdę i pozwala człowiekowi obcować z tym, czego w pracy najczęściej brak. A przecież
-to tylko statyczny content. 
 
 Kropka.
