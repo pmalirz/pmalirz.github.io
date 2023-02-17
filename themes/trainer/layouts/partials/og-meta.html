@@ -3,7 +3,7 @@
 {{- if .Description }}
 <meta property="og:description" content="{{if .Description}}{{ .Description }}{{else}}{{.Site.Params.Description}}{{end}}">
 {{ end -}}
-{{- .Scratch.Set "ogImage" (resources.Get "/img/logo.png") -}}
+{{- .Scratch.Set "ogImage" (resources.Get "/img/about/about.jpg") -}}
 {{- if ne .IsHome true }}
     {{- $pageName := path.BaseName .File.LogicalName -}}
     {{- $imageName := printf "%s%s%s" "**/" $pageName ".jpg" -}}
