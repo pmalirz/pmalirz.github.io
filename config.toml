@@ -13,6 +13,7 @@ defaultContentLanguage = 'pl'
 favicon = "favicon.ico"
 fbId = '998215791155769'
 ttId = '@pmalirz'
+googleTagManager = 'GTM-PHS33N2'
 description = 'Szkolenia - Programowanie i architektura systemów'
 
 [build]

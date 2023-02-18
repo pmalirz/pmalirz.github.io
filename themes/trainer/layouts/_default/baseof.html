@@ -3,6 +3,15 @@
 {{ partial "head.html" . }}
 
 <body class="flex flex-col h-screen z-0">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id={{.Site.Params.googleTagManager}}"
+                      height="0" width="0" style="display:none;visibility:hidden">
+
+        </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     {{- partial "background.html" . -}}
     <!--{{- partial "dev/dev-tools.html" . -}}-->
     {{- partial "header.html" . -}}
