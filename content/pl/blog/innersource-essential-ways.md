@@ -92,7 +92,7 @@ successful InnerSource practices.
   extending its functions (The blue and green silos on the below picture.
 
 [//]: # (@formatter:off)
-{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-customer-contribution.png" class="flex max-w-xs" >}}
+{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-customer-contribution.png" class="flex max-w-xs" alt="innersource-3ways-customer-contribution" >}}
 
 [//]: # (@formatter:on)
 
@@ -144,7 +144,7 @@ savings, simplified architecture and infrastructure, and wider distribution of k
 designed to complement the primary tasks and bring additional benefits to the organization.
 
 [//]: # (@formatter:off)
-{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-shared-component.png" class="flex max-w-xs" >}}
+{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-shared-component.png" class="flex max-w-xs" alt="innersource-3ways-shared-component" >}}
 
 [//]: # (@formatter:on)
 
@@ -194,7 +194,7 @@ program. Gig Marketplace can be implemented similarly to [#help-wanted](https://
 GitHub, making it easy to find and address tickets.
 
 [//]: # (@formatter:off)
-{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-gig-marketplace.png" class="flex max-w-xs" >}}
+{{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-gig-marketplace.png" class="flex max-w-xs" alt="innersource-3ways-gig-marketplace.png" >}}
 
 [//]: # (@formatter:on)
 
