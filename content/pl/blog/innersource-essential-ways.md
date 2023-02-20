@@ -101,7 +101,7 @@ successful InnerSource practices.
 The Blue/Green Teams work depends on the Red Team's project or the Blue/Green Teams would like to reuse a shared
 component owned by the Red Team. The Blue/Green Teams require a new feature or extension to the Red Team's project.
 
-#### Problem (picture on the left)
+#### Common practice (picture on the left)
 
 The Green and Blue Teams have requested changes to the project being managed by the Red Team. However, due to a tight
 schedule, the Red Team is unable to accommodate any additional work in the coming weeks or months. In order to address
@@ -154,7 +154,7 @@ All Teams while working on the business project need to implement functionalitie
 reused by others. We all know the examples of cross-cutting functions like email service, authentication, maker /
 checker or more business-specific yet still required by other groups like FX service or payment service.
 
-#### Problem (picture on the left)
+#### Common practice (picture on the left)
 
 The Blue/Red/Green Teams are currently focused on their main business projects. Each team is working on implementing
 specific functionalities that are part of the project's repository, with a strong emphasis on their own unique business
@@ -205,7 +205,7 @@ resources. This challenge could be resolved by an external contributor, such as 
 implementing a feature or component. Blue Team's deadlines are getting closer. It is imperative to seek external help in
 order to overcome this challenge and meet the project's timeline.
 
-#### Problem
+#### Common practice
 
 The Blue Team is experiencing a challenge with their project, as they have a particular requirement (could be a feature
 or training) that none of the team members can address due to either a tight schedule or insufficient expertise.
