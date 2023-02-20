@@ -75,7 +75,7 @@ company.
 
 The Customer Contribution method is a crucial aspect of InnerSource practices, emphasizing the value of **Pull requests
 over Feature requests**. By officially opening a project for external contributions, this approach enables the Customer
-Team to actively participate in the development process by contributing to the project owned by the Vendors Team instead
+Team to actively participate in the development process by contributing to the project owned by the Vendor Team instead
 of just requesting a specific feature. This not only fosters global communication and collaboration but also turns the
 Customer Team into a vendor of additional features, creating a win-win situation for all parties involved.
 
@@ -86,8 +86,8 @@ to communication and empowering teams to work together, the Customer Contributio
 successful InnerSource practices.
 
 - **Vendor Team** - The [Core Team](https://patterns.innersourcecommons.org/p/core-team). This is the team that owning
-  the project upon which other teams depend. The project might be either a core business project or a shared component (
-  The red silo on the below picture).
+  the project upon which other teams depend. The project might be either a core business project or a shared component 
+  (The red silo on the below picture).
 - **Customer Team** - The team depends on the project owned by the Vendor Team or wants to reuse the shared component
   extending its functions (The blue and green silos on the below picture.
 
@@ -98,7 +98,7 @@ successful InnerSource practices.
 
 ### Scenario
 
-The Blue/Green Teams work depend on the Red Team's project or the Blue/Green Teams would like to reuse a shared
+The Blue/Green Teams work depends on the Red Team's project or the Blue/Green Teams would like to reuse a shared
 component owned by the Red Team. The Blue/Green Teams require a new feature or extension to the Red Team's project.
 
 #### Problem (picture on the left)
