@@ -18,31 +18,6 @@ If you, like me, have been searching for ways to enhance collaboration among tea
 you're a CxO seeking to cultivate your company's culture, elevate the quality of your products, and simultaneously
 reduce costs, then you should read this blog post.
 
-[//]: # (@formatter:off)
-
-<!-- TOC -->
-  * [Customer Contribution (Pull request over Feature request)](#customer-contribution--pull-request-over-feature-request-)
-    * [Scenario](#scenario)
-      * [Common practice (picture on the left)](#common-practice--picture-on-the-left-)
-      * [InnerSource Solution (picture ot the right)](#innersource-solution--picture-ot-the-right-)
-      * [Major Advantages](#major-advantages)
-  * [Shared Component (Byproduct by design)](#shared-component--byproduct-by-design-)
-    * [Scenario](#scenario-1)
-      * [Common practice (picture on the left)](#common-practice--picture-on-the-left--1)
-      * [InnerSource Solution (picture on the right)](#innersource-solution--picture-on-the-right-)
-      * [Major Advantages](#major-advantages-1)
-  * [Gig Marketplace (#help-wanted)](#gig-marketplace--help-wanted-)
-    * [Scenario](#scenario-2)
-      * [Common practice](#common-practice)
-      * [InnerSource Solution](#innersource-solution)
-      * [Major Advantages](#major-advantages-2)
-  * [Afterword](#afterword)
-  * [Further materials](#further-materials)
-  * [Thank you](#thank-you)
-<!-- TOC -->
-
-[//]: # (@formatter:on)
-
 Establishing the **InnerSource** culture in an organization is not a trivial task. The larger the company, the harder it
 is to change ingrained practices. Thankfully, you can implement InnerSource in small steps, and in fact, it is advisable
 not to attempt to completely change your culture in a single day with a "big bang" approach. It is simply not
