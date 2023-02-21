@@ -7,7 +7,7 @@
     {{ if $image }}
 
     <div class="w-full h-96 overflow-hidden rounded-t-xl">
-        <img class="w-full h-full object-cover" src="{{$image.Permalink}}">
+        <img class="w-full h-full object-cover" src="{{$image.Permalink}}" alt="{{$pageName}}">
     </div>
     {{ end }}
     <article class="bg-zinc-100 px-8 sm:px-16 py-8 mx-auto rounded-b-xl text-justify prose prose-sm prose-sm:prose-pre:overflow-x-auto md:prose max-w-none md:max-w-none prose-zinc md:prose-zinc prose-a:text-sky-700 md:prose-a:text-sky-700 hover:prose-a:text-sky-800 prose-img:rounded-xl">
