@@ -65,7 +65,7 @@ successful InnerSource practices.
   the project upon which other teams depend. The project might be either a core business project or a shared component
   (The red silo on the below picture).
 - **Customer Team** - The team depends on the project owned by the Vendor Team or wants to reuse the shared component
-  extending its functions (The blue and green silos on the below picture.
+  extending its functions (The blue and green silos on the below picture).
 
 [//]: # (@formatter:off)
 {{< figure src="/img/blog/innersource-essential-ways/innersource-3ways-customer-contribution.png" class="flex max-w-xs" alt="innersource-3ways-customer-contribution" >}}
@@ -86,7 +86,7 @@ Unfortunately, this process can often be disruptive and lead to frustration and 
 team members. As a result, much of the teams' time is spent on stressful calls instead of making progress on the
 project.
 
-#### InnerSource Solution (picture ot the right)
+#### InnerSource Solution (picture on the right)
 
 According to InnerSource practices, the Red Team collaborates with the Green and Blue teams to discuss necessary
 changes. The Red Team provides accessible documentation, house rules for guests, and clear guidelines for contributions
