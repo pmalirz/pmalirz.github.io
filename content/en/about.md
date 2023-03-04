@@ -39,7 +39,8 @@ knowledge? Don't hesitate any longer!
 Interested in preparing workshops, trainings, or presentations at a **university or company**? I'd be happy to help.
 
 I'm also prepared for a professional preparation of a topic chosen by you, which I do not directly have in my offer, but
-which is in my experience. It's just a matter of systematizing knowledge into an easily digestible form.
+which is in [my experience](#qualifications). It's just a matter of systematizing knowledge into an easily digestible
+form.
 
 I invite you for **consultations, presentations, trainings, workshops, mentoring, and reading my subjective blog**.
 Connecting and networking only helps, so be sure to find me at:

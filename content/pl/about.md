@@ -41,7 +41,7 @@ skonfrontować lub uzupełnić swoją wiedzę? Nie ma sensu się dłużej wahać
 Interesuje Cię przygotowanie warsztatów, szkolenia lub prezentacji **na uczelni, lub w firmie**? Chętnie Ci pomogę. 
 
 Jestem również przygotowany na profesjonalne opracowanie wybranego przez Ciebie tematu, którego nie posiadam 
-bezpośrednio w ofercie, a [znajduje się w moim doświadczeniu](). To tylko kwestia usystematyzowania wiedzy w łatwą do 
+bezpośrednio w ofercie, a [znajduje się w moim doświadczeniu](#kwalifikacje). To tylko kwestia usystematyzowania wiedzy w łatwą do 
 przyswojenia formę.
 
 **Zapraszam na konsultacje, prezentacje, szkolenia, warsztaty, mentoring oraz do czytania mojego subiektywnego bloga.**
