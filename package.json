@@ -17,7 +17,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
     "alpinejs": "^3.12.2",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.15",
     "concurrently": "^8.2.0",
     "postcss": "^8.4.24",
     "postcss-cli": "^10.1.0",
