@@ -9,15 +9,19 @@
         <h2 class="section-title gradient-text">About Me</h2>
         
         <p class="bio highlight">
-          I'm a seasoned <strong>Solution and Enterprise Architect</strong>, Tech Leader, and hands-on engineer with over 20 years of experience.
+          I am a <strong>Solution and Enterprise Architect</strong>, Tech Leader, and hands-on engineer dedicated to driving business value through robust technology.
         </p>
 
         <p class="bio">
-          My journey started years ago with C++, and since then, I've been happily exploring the vast universe of software development. While I have extensive experience in designing and implementing complex systems, at heart, I'm just a geek who enjoys building things. I treat my GitHub and local environment as a playground where I constantly experiment with new ideas, languages, and frameworks—just for the sheer joy of creating something new.
+          With over two decades of experience, I specialize in bridging the gap between complex technical landscapes and strategic business objectives. My expertise spans the entire software lifecycle—from high-level enterprise architecture and system design to low-level, hands-on implementation. I pride myself on delivering complete, reliable, and easy-to-maintain solutions that empower teams and elevate organizations.
         </p>
         
         <p class="bio">
-          I'm a huge fan of <strong>Clean Code</strong> and pragmatic architecture (like DDD, Hexagonal, and CQRS). Currently, I'm diving deep into <strong>AI</strong> and <strong>Agentic Workflows</strong> (MCP) to explore how they can reshape the way we build software.
+          Whether I am leading cross-functional teams, implementing pragmatic architectures like DDD and CQRS, or fostering strong client relations, my goal is always to align technology with business vision. Currently, I am exploring how <strong>AI and Agentic Workflows</strong> can revolutionize software delivery, and I am always open to connecting with forward-thinking companies and professionals expanding their network.
+        </p>
+
+        <p class="bio cta-text">
+          If you would like to build something new, refactor something old, or consult possibilities—now is the time to <a href="#contact" class="animated-link">contact me</a>.
         </p>
 
         <blockquote class="quote">
@@ -92,6 +96,50 @@
   .bio strong {
     color: var(--color-secondary);
     font-weight: 600;
+  }
+
+  .cta-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-heading);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--color-secondary);
+  }
+
+  .animated-link {
+    color: var(--color-primary);
+    position: relative;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .animated-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-secondary);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  .animated-link:hover {
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  .animated-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 
   .quote {

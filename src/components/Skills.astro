@@ -1,16 +1,17 @@
 ---
 const skills = [
-  { category: "Core", items: ["HTML", "CSS/SCSS", "JavaScript", "TypeScript"] },
-  { category: "Frameworks", items: ["React", "Vue", "Astro", "Next.js"] },
-  { category: "Styling", items: ["TailwindCSS", "Styled Components", "Framer Motion", "GSAP"] },
-  { category: "Tools", items: ["Git", "Webpack", "Vite", "Figma"] }
+  { category: "Core Technologies", items: ["<i class='devicon-java-plain'></i> Java", "<i class='devicon-dot-net-plain'></i> .NET / C#", "<i class='devicon-apachekafka-original'></i> Kafka", "<i class='devicon-spring-original'></i> Spring Boot", "<i class='devicon-amazonwebservices-plain-wordmark'></i> AWS"] },
+  { category: "Architecture & Strategy", items: ["Enterprise Architecture", "Domain-Driven Design", "System Design", "Cloud Native"] },
+  { category: "Leadership & Delivery", items: ["Technical Leadership", "Client Relations", "Cross-functional Teams", "Agile Methods"] },
+  { category: "Engineering Practices", items: ["Clean Code", "CQRS / Event Sourcing", "DevOps & CI/CD", "Software Craftsmanship"] },
+  { category: "Emerging Tech", items: ["<i class='fa-solid fa-robot'></i> AI Engineering", "<i class='fa-solid fa-microchip'></i> Agentic Workflows", "<i class='fa-solid fa-brain'></i> LLMs Integration", "<i class='fa-solid fa-flask'></i> R&D"] }
 ];
 ---
 
 <section id="skills" class="page-container container section-animate">
   <div class="header">
-    <h2 class="page-title gradient-text">My Arsenal</h2>
-    <p class="page-desc">The technologies and tools I use to bring ideas to life.</p>
+    <h2 class="page-title gradient-text">My Arsenal & Offer</h2>
+    <p class="page-desc">The strategic capabilities, leadership, and technical expertise I bring to the table.</p>
   </div>
 
   <div class="skills-grid">
@@ -19,7 +20,7 @@ const skills = [
         <h3 class="category-title">{skillGroup.category}</h3>
         <div class="tags">
           {skillGroup.items.map((item) => (
-            <span class="tag">{item}</span>
+            <span class="tag" set:html={item}></span>
           ))}
         </div>
       </div>
@@ -100,6 +101,20 @@ const skills = [
     font-size: 0.9rem;
     color: var(--color-text);
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Target dynamically inserted icons within the tag */
+  :global(.tag i) {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    transition: color 0.3s ease;
+  }
+
+  .tag:hover :global(i) {
+    color: #fff;
   }
 
   .tag:hover {
