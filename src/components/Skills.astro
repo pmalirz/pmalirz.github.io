@@ -1,6 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
 const skills = [
   { category: "Core", items: ["HTML", "CSS/SCSS", "JavaScript", "TypeScript"] },
   { category: "Frameworks", items: ["React", "Vue", "Astro", "Next.js"] },
@@ -9,41 +7,39 @@ const skills = [
 ];
 ---
 
-<Layout title="Skills | Przemek Malirz">
-  <div class="page-container container">
-    <div class="header">
-      <h1 class="page-title gradient-text">My Arsenal</h1>
-      <p class="page-desc">The technologies and tools I use to bring ideas to life.</p>
-    </div>
-
-    <div class="skills-grid">
-      {skills.map((skillGroup, index) => (
-        <div class="skill-card glass" style={`animation-delay: ${index * 0.1}s`}>
-          <h2 class="category-title">{skillGroup.category}</h2>
-          <div class="tags">
-            {skillGroup.items.map((item) => (
-              <span class="tag">{item}</span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+<section id="skills" class="page-container container section-animate">
+  <div class="header">
+    <h2 class="page-title gradient-text">My Arsenal</h2>
+    <p class="page-desc">The technologies and tools I use to bring ideas to life.</p>
   </div>
-</Layout>
+
+  <div class="skills-grid">
+    {skills.map((skillGroup, index) => (
+      <div class="skill-card glass" style={`transition-delay: ${index * 0.1}s`}>
+        <h3 class="category-title">{skillGroup.category}</h3>
+        <div class="tags">
+          {skillGroup.items.map((item) => (
+            <span class="tag">{item}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
 <style>
   .page-container {
-    padding-top: 120px;
+    padding-top: 100px;
     padding-bottom: 80px;
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 2;
   }
   .header {
     text-align: center;
     margin-bottom: 4rem;
-    animation: fadeIn 0.8s ease-out forwards;
   }
   .page-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -65,14 +61,21 @@ const skills = [
   .skill-card {
     padding: 2rem;
     border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-animate .header, .section-animate .skill-card {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-out forwards;
+    transform: translateY(30px);
+  }
+
+  .section-animate.visible .header, .section-animate.visible .skill-card {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   .skill-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) !important;
     box-shadow: 0 15px 40px rgba(138, 43, 226, 0.15);
     border-color: rgba(138, 43, 226, 0.3);
   }
@@ -105,20 +108,28 @@ const skills = [
     border-color: var(--color-primary);
     transform: scale(1.05);
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 </style>
+
+<script>
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const setupObserver = () => {
+    const sections = document.querySelectorAll('.section-animate');
+    sections.forEach(sec => {
+      const observer = new IntersectionObserver(observerCallback, {
+        threshold: 0.1
+      });
+      observer.observe(sec);
+    });
+  };
+
+  setupObserver();
+  document.addEventListener('astro:page-load', setupObserver);
+</script>

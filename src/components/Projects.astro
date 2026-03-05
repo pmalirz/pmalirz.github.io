@@ -1,6 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
 const projects = [
   {
     title: "E-Commerce Platform",
@@ -23,42 +21,40 @@ const projects = [
 ];
 ---
 
-<Layout title="Projects | Przemek Malirz">
-  <div class="page-container container">
-    <div class="header">
-      <h1 class="page-title gradient-text">Featured Work</h1>
-      <p class="page-desc">A selection of my recent projects and experiments.</p>
-    </div>
-
-    <div class="projects-grid">
-      {projects.map((project, index) => (
-        <a href={project.link} class="project-card glass" style={`animation-delay: ${index * 0.1}s`}>
-          <div class="project-content">
-            <h2 class="project-title">{project.title}</h2>
-            <p class="project-desc">{project.desc}</p>
-            <div class="tech-stack">
-              {project.tech.map(t => <span class="tech">{t}</span>)}
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
+<section id="projects" class="page-container container section-animate">
+  <div class="header">
+    <h2 class="page-title gradient-text">Featured Work</h2>
+    <p class="page-desc">A selection of my recent projects and experiments.</p>
   </div>
-</Layout>
+
+  <div class="projects-grid">
+    {projects.map((project, index) => (
+      <a href={project.link} class="project-card glass" style={`transition-delay: ${index * 0.1}s`}>
+        <div class="project-content">
+          <h3 class="project-title">{project.title}</h3>
+          <p class="project-desc">{project.desc}</p>
+          <div class="tech-stack">
+            {project.tech.map(t => <span class="tech">{t}</span>)}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
 
 <style>
   .page-container {
-    padding-top: 120px;
+    padding-top: 100px;
     padding-bottom: 80px;
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 2;
   }
   .header {
     text-align: center;
     margin-bottom: 4rem;
-    animation: fadeIn 0.8s ease-out forwards;
   }
   .page-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -84,9 +80,17 @@ const projects = [
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-animate .header, .section-animate .project-card {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-out forwards;
+    transform: translateY(30px);
+  }
+
+  .section-animate.visible .header, .section-animate.visible .project-card {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .project-card::before {
@@ -103,7 +107,7 @@ const projects = [
   }
 
   .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) !important;
     border-color: rgba(0, 255, 255, 0.4);
   }
 
@@ -149,21 +153,5 @@ const projects = [
     background: rgba(138, 43, 226, 0.1);
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 </style>

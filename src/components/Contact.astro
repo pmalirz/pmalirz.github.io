@@ -1,55 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact | Przemek Malirz">
-  <div class="page-container container">
-    <div class="header">
-      <h1 class="page-title gradient-text">Get In Touch</h1>
-      <p class="page-desc">I'm currently available for freelance work. Let's create something great together.</p>
-    </div>
+<section id="contact" class="page-container container section-animate">
+  <div class="header">
+    <h2 class="page-title gradient-text">Get In Touch</h2>
+    <p class="page-desc">I'm currently available for freelance work. Let's create something great together.</p>
+  </div>
 
-    <div class="contact-card glass">
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a demo setup!');">
-        <div class="input-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" required placeholder="John Doe" />
-        </div>
-        <div class="input-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" required placeholder="hello@example.com" />
-        </div>
-        <div class="input-group">
-          <label for="message">Message</label>
-          <textarea id="message" rows="5" required placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-      <div class="socials">
-        <h3 class="socials-title">Or find me on</h3>
-        <div class="social-links">
-          <a href="https://github.com/pmalirz/" class="social-link" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/przemyslawmalirz/" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="#" class="social-link" target="_blank" rel="noopener">Twitter</a>
-        </div>
+  <div class="contact-card glass">
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a demo setup!');">
+      <div class="input-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" required placeholder="John Doe" />
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="hello@example.com" />
+      </div>
+      <div class="input-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <div class="socials">
+      <h3 class="socials-title">Or find me on</h3>
+      <div class="social-links">
+        <a href="https://github.com/pmalirz/" class="social-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/przemyslawmalirz/" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">Twitter</a>
       </div>
     </div>
   </div>
-</Layout>
+</section>
 
 <style>
   .page-container {
-    padding-top: 120px;
-    padding-bottom: 80px;
-    flex: 1;
+    padding-top: 100px;
+    padding-bottom: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 2;
   }
   .header {
     text-align: center;
     margin-bottom: 4rem;
-    animation: fadeIn 0.8s ease-out forwards;
   }
   .page-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -70,9 +67,17 @@ import Layout from '../layouts/Layout.astro';
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-animate .header, .section-animate .contact-card {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-out forwards;
+    transform: translateY(30px);
+  }
+
+  .section-animate.visible .header, .section-animate.visible .contact-card {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: 768px) {
@@ -197,21 +202,5 @@ import Layout from '../layouts/Layout.astro';
   .social-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 </style>
