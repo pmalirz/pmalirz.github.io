@@ -289,7 +289,12 @@
       mouseParams.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouseParams.y = -(event.clientY / window.innerHeight) * 2 + 1;
     };
+    const handleMouseLeave = () => {
+      mouseParams.x = -9999;
+      mouseParams.y = -9999;
+    };
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
 
     // --- ELECTRIC BLAST ---
     let blastPoint = null;
@@ -368,7 +373,7 @@
         let targetX = origX;
         let targetZ = origZ;
 
-        // Hover disturbance (weaving effect)
+        // Hover disturbance (magnetic pull)
         let distanceToHover = -1;
         if (hoverPoint) {
           const localHoverX = hoverPoint.x - particlesMesh.position.x;
@@ -379,16 +384,18 @@
           distanceToHover = Math.sqrt(dx * dx + dz * dz);
           
           const interactionRadius = 3.5;
-          if (distanceToHover < interactionRadius) {
-            const force = (interactionRadius - distanceToHover) / interactionRadius;
+          if (distanceToHover > 0 && distanceToHover < interactionRadius) {
+            const normalizedDist = distanceToHover / interactionRadius;
             
-            // Raise particles up like a magnetic pull
-            targetY += force * 2.5; 
+            // Smooth easing force for magnetic attraction
+            const pullForce = Math.pow(1.0 - normalizedDist, 1.5) * 0.6; // Pulls particles up to 60% towards the center
             
-            // Swirl / weave them centrifugally based on distance
-            const angle = Math.atan2(dz, dx) + (elapsedTime * 2);
-            targetX += Math.cos(angle) * force * 1.2;
-            targetZ += Math.sin(angle) * force * 1.2;
+            // Squeeze particles tightly towards the mouse coordinates
+            targetX -= dx * pullForce;
+            targetZ -= dz * pullForce;
+            
+            // Subtle lift to give the clustered area a bit of depth
+            targetY += pullForce * 0.5;
           }
         }
 
@@ -475,7 +482,8 @@
       colors.needsUpdate = true;
 
       // Subtle camera pan linked to mouse
-      camera.position.x += (mouseParams.x * 2 - camera.position.x) * 0.02;
+      const targetCameraX = mouseParams.x === -9999 ? 0 : mouseParams.x * 2;
+      camera.position.x += (targetCameraX - camera.position.x) * 0.02;
       camera.lookAt(0, -1, 0);
 
       renderer.render(scene, camera);
@@ -495,6 +503,7 @@
     document.addEventListener('astro:before-swap', () => {
       cancelAnimationFrame(animationFrameId);
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
