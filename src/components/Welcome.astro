@@ -167,6 +167,7 @@
     const posArray = new Float32Array(numParticles * 3);
     const colorsArray = new Float32Array(numParticles * 3);
     const originalPositions = new Float32Array(numParticles * 3);
+    const originalColors = new Float32Array(numParticles * 3);
     
     const colorPrimary = new THREE.Color(0x8a2be2);
     const colorSecondary = new THREE.Color(0x00ffff);
@@ -192,6 +193,10 @@
         colorsArray[index * 3] = mixedColor.r;
         colorsArray[index * 3 + 1] = mixedColor.g;
         colorsArray[index * 3 + 2] = mixedColor.b;
+
+        originalColors[index * 3] = mixedColor.r;
+        originalColors[index * 3 + 1] = mixedColor.g;
+        originalColors[index * 3 + 2] = mixedColor.b;
         
         index++;
       }
@@ -247,6 +252,8 @@
 
       const positions = particlesGeometry.attributes.position;
       const posArr = positions.array;
+      const colors = particlesGeometry.attributes.color;
+      const colArr = colors.array;
 
       for (let i = 0; i < numParticles; i++) {
         const i3 = i * 3;
@@ -261,17 +268,18 @@
         let targetZ = origZ;
 
         // Hover disturbance (weaving effect)
+        let distanceToHover = -1;
         if (hoverPoint) {
           const localHoverX = hoverPoint.x - particlesMesh.position.x;
           const localHoverZ = hoverPoint.z - particlesMesh.position.z;
 
           const dx = origX - localHoverX;
           const dz = origZ - localHoverZ;
-          const distance = Math.sqrt(dx * dx + dz * dz);
+          distanceToHover = Math.sqrt(dx * dx + dz * dz);
           
           const interactionRadius = 3.5;
-          if (distance < interactionRadius) {
-            const force = (interactionRadius - distance) / interactionRadius;
+          if (distanceToHover < interactionRadius) {
+            const force = (interactionRadius - distanceToHover) / interactionRadius;
             
             // Raise particles up like a magnetic pull
             targetY += force * 2.5; 
@@ -287,9 +295,40 @@
         posArr[i3] += (targetX - posArr[i3]) * 0.08;
         posArr[i3 + 1] += (targetY - posArr[i3 + 1]) * 0.08;
         posArr[i3 + 2] += (targetZ - posArr[i3 + 2]) * 0.08;
+        
+        // --- Light Reflexes ---
+        let reflexVal = 0;
+        
+        // 1. Sweeping specular light band across the grid
+        const lightAngle = elapsedTime * 0.4;
+        const linePos = origX * Math.cos(lightAngle) + origZ * Math.sin(lightAngle);
+        const sweepPos = Math.sin(elapsedTime * 0.6) * 15;
+        const sweepDist = Math.abs(linePos - sweepPos);
+        
+        if (sweepDist < 1.5) {
+          // Sharp intense bright line passing through
+          reflexVal += Math.pow(1.0 - (sweepDist / 1.5), 2.0) * 0.8;
+        }
+        
+        // 2. Wave crest highlights (peaks catch the light)
+        const crestHeight = targetY - origY;
+        if (crestHeight > 0.3) {
+           reflexVal += (crestHeight - 0.3) * 0.5;
+        }
+        
+        // 3. Hover illumination
+        if (distanceToHover !== -1 && distanceToHover < 3.5) {
+           reflexVal += Math.pow(1.0 - (distanceToHover / 3.5), 2.0) * 0.6;
+        }
+
+        // Apply additive light to the original color
+        colArr[i3] = Math.min(1.0, originalColors[i3] + reflexVal);
+        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal);
+        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal);
       }
 
       positions.needsUpdate = true;
+      colors.needsUpdate = true;
 
       // Subtle camera pan linked to mouse
       camera.position.x += (mouseParams.x * 2 - camera.position.x) * 0.02;
