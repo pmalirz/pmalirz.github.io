@@ -333,8 +333,38 @@
         const origZ = originalPositions[i3 + 2];
         const origY = originalPositions[i3 + 1];
 
+        // --- Compute Shockwave Calm Matrix ---
+        let waveAmplitude = 1.0;
+        let distB = -1;
+        let dxB = 0, dzB = 0;
+        let timeSinceBlast = -1;
+
+        if (blastPoint) {
+            dxB = origX - (blastPoint.x - particlesMesh.position.x);
+            dzB = origZ - (blastPoint.z - particlesMesh.position.z);
+            distB = Math.sqrt(dxB * dxB + dzB * dzB);
+            timeSinceBlast = elapsedTime - blastStartTime;
+            
+            const timeSinceHit = timeSinceBlast - (distB / 45.0);
+            
+            if (timeSinceHit > 0) {
+                // The shockwave has passed this particle, dampening begins
+                if (timeSinceHit < 0.5) {
+                    waveAmplitude = 1.0 - (timeSinceHit / 0.5) * 0.95; // Drops to 0.05
+                } else if (timeSinceHit < 5.0) {
+                    waveAmplitude = 0.05; // Perfect calm for 4.5 seconds
+                } else if (timeSinceHit < 12.0) {
+                    // Gradual recovery over 7s back to full wave amplitude
+                    const recoverProgress = (timeSinceHit - 5.0) / 7.0;
+                    waveAmplitude = 0.05 + Math.pow(recoverProgress, 2.0) * 0.95;
+                }
+            }
+        }
+
+        const baseAmplitude = 0.4 * waveAmplitude;
+
         // Gentle ocean waves
-        let targetY = origY + Math.sin(elapsedTime * 1.5 + origX * 0.8) * 0.4 + Math.cos(elapsedTime * 1.5 + origZ * 0.8) * 0.4;
+        let targetY = origY + Math.sin(elapsedTime * 1.5 + origX * 0.8) * baseAmplitude + Math.cos(elapsedTime * 1.5 + origZ * 0.8) * baseAmplitude;
         let targetX = origX;
         let targetZ = origZ;
 
@@ -365,11 +395,6 @@
         // --- Click Blast (Electric Wave) ---
         let electricVal = 0;
         if (blastPoint) {
-            const dxB = origX - (blastPoint.x - particlesMesh.position.x);
-            const dzB = origZ - (blastPoint.z - particlesMesh.position.z);
-            const distB = Math.sqrt(dxB * dxB + dzB * dzB);
-            
-            const timeSinceBlast = elapsedTime - blastStartTime;
             const blastRadius = timeSinceBlast * 45.0; // very fast expansion
             
             // Active duration of the blast wave
