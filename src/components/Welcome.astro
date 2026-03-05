@@ -218,6 +218,38 @@
     particlesMesh.position.y = -3;
     scene.add(particlesMesh);
 
+    // --- ELECTRIC LINES ---
+    const linesGeometry = new THREE.BufferGeometry();
+    linesGeometry.setAttribute('position', particlesGeometry.attributes.position);
+    linesGeometry.setAttribute('color', particlesGeometry.attributes.color);
+    
+    const indices = [];
+    // Create organic connecting paths
+    for (let i = 0; i < countX; i++) {
+      for (let j = 0; j < countZ; j++) {
+        const idx = i * countZ + j;
+        // Connect Right (60% chance)
+        if (i < countX - 1 && Math.random() > 0.4) indices.push(idx, idx + countZ);
+        // Connect Bottom (60% chance)
+        if (j < countZ - 1 && Math.random() > 0.4) indices.push(idx, idx + 1);
+        // Connect Diagonal (15% chance to add chaotic "short circuits")
+        if (i < countX - 1 && j < countZ - 1 && Math.random() > 0.85) indices.push(idx, idx + countZ + 1);
+      }
+    }
+    linesGeometry.setIndex(indices);
+    
+    const linesMaterial = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+      opacity: 0.12,
+      depthWrite: false
+    });
+    
+    const linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
+    linesMesh.position.y = -3;
+    scene.add(linesMesh);
+
     // --- INTERACTION PLANE ---
     const raycaster = new THREE.Raycaster();
     const mouseParams = new THREE.Vector2(-9999, -9999);
@@ -234,6 +266,21 @@
       mouseParams.y = -(event.clientY / window.innerHeight) * 2 + 1;
     };
     document.addEventListener('mousemove', handleMouseMove);
+
+    // --- ELECTRIC BLAST ---
+    let blastPoint = null;
+    let blastStartTime = -9999;
+    
+    const handleClick = () => {
+      raycaster.setFromCamera(mouseParams, camera);
+      const intersects = raycaster.intersectObject(invisiblePlane);
+      if (intersects.length > 0) {
+        // Record where and when they clicked
+        blastPoint = intersects[0].point;
+        blastStartTime = clock.getElapsedTime();
+      }
+    };
+    document.addEventListener('click', handleClick);
 
     const clock = new THREE.Clock();
     let animationFrameId;
@@ -299,19 +346,7 @@
         // --- Light Reflexes ---
         let reflexVal = 0;
         
-        // 1. Sweeping specular light band across the grid
-        const lightAngle = elapsedTime * 0.4;
-        const linePos = origX * Math.cos(lightAngle) + origZ * Math.sin(lightAngle);
-        const sweepPos = Math.sin(elapsedTime * 0.6) * 15;
-        const sweepDist = Math.abs(linePos - sweepPos);
-        
-        if (sweepDist < 1.5) {
-          // Sharp intense bright line passing through, with strong blinking
-          const blink = Math.sin(elapsedTime * 25.0 + i) * 0.5 + 0.5;
-          reflexVal += Math.pow(1.0 - (sweepDist / 1.5), 2.0) * (1.2 + blink * 1.5);
-        }
-        
-        // 2. Wave crest highlights (peaks catch the light)
+        // 1. Wave crest highlights (peaks catch the light)
         const crestHeight = targetY - origY;
         if (crestHeight > 0.3) {
            const blink = Math.sin(elapsedTime * 15.0 + i * 2) * 0.5 + 0.5;
@@ -322,6 +357,31 @@
         if (distanceToHover !== -1 && distanceToHover < 3.5) {
            const blink = Math.random() > 0.3 ? 1.5 : 0.5; // strong flicker near hover
            reflexVal += Math.pow(1.0 - (distanceToHover / 3.5), 2.0) * (1.2 * blink);
+        }
+
+        // 4. Click Blast current
+        if (blastPoint) {
+            const dxB = origX - (blastPoint.x - particlesMesh.position.x);
+            const dzB = origZ - (blastPoint.z - particlesMesh.position.z);
+            const distB = Math.sqrt(dxB * dxB + dzB * dzB);
+            
+            // Rapidly expand an electric ring outward based on time
+            const timeSinceBlast = elapsedTime - blastStartTime;
+            const blastRadius = timeSinceBlast * 35.0; // very fast expansion
+            
+            // If the ring is currently passing over this particle, illuminate it wildly
+            if (timeSinceBlast > 0 && timeSinceBlast < 3.0) { // dies out after 3 seconds max
+                const ringThickness = 1.5;
+                const distFromRing = Math.abs(distB - blastRadius);
+                
+                if (distFromRing < ringThickness) {
+                   const intensity = 1.0 - (distFromRing / ringThickness);
+                   const fadeFactor = Math.max(0, 1.0 - (timeSinceBlast / 3.0));
+                   // Violent electric flickering inside the expanding ring
+                   const blink = Math.random() > 0.2 ? 3.5 : 0.0;
+                   reflexVal += intensity * blink * fadeFactor * 2.0;
+                }
+            }
         }
 
         // Apply additive light to the original color
@@ -355,10 +415,13 @@
     document.addEventListener('astro:before-swap', () => {
       cancelAnimationFrame(animationFrameId);
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
       particlesGeometry.dispose();
       particlesMaterial.dispose();
+      linesGeometry.dispose();
+      linesMaterial.dispose();
       invisiblePlane.geometry.dispose();
       invisiblePlane.material.dispose();
     }, { once: true });
