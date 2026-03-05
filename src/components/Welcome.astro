@@ -76,10 +76,47 @@
     position: absolute;
     left: 0;
     top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 12px;
+    background: var(--color-secondary);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cpath d='M0,6 Q5,1 10,6 T20,6' fill='none' stroke='black' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cpath d='M0,6 Q5,1 10,6 T20,6' fill='none' stroke='black' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-position: 0 center;
+    mask-position: 0 center;
+    opacity: 0.6;
+    animation: wave-move 2.5s linear infinite;
+    transition: opacity 0.5s ease;
+  }
+  .name-intro::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 35px;
     height: 1px;
     background: var(--color-secondary);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .name-intro.stable-line::before {
+    opacity: 0;
+  }
+  .name-intro.stable-line::after {
     opacity: 0.6;
+  }
+  @keyframes wave-move {
+    0% {
+      -webkit-mask-position: 0 center;
+      mask-position: 0 center;
+    }
+    100% {
+      -webkit-mask-position: 20px center;
+      mask-position: 20px center;
+    }
   }
   .subtitle {
     font-size: clamp(1rem, 3vw, 1.5rem);
@@ -323,7 +360,7 @@
     // --- ELECTRIC BLAST ---
     let blastPoint = null;
     let blastStartTime = -9999;
-    let calmTextTimeout1, calmTextTimeout2, calmTextTimeout3;
+    let calmTextTimeout1, calmTextTimeout2, calmTextTimeout3, nameIntroTimeout;
     
     const handleClick = () => {
       raycaster.setFromCamera(mouseParams, camera);
@@ -341,6 +378,7 @@
           clearTimeout(calmTextTimeout1);
           clearTimeout(calmTextTimeout2);
           clearTimeout(calmTextTimeout3);
+          clearTimeout(nameIntroTimeout);
 
           // Reset inline styles if any
           titleLine1.style.opacity = '';
@@ -368,6 +406,14 @@
               titleLine2.classList.remove('title-emerge-hidden');
             }, 1200);
           }, 10500); 
+        }
+
+        const nameIntro = document.querySelector('.name-intro');
+        if (nameIntro) {
+          nameIntro.classList.add('stable-line');
+          nameIntroTimeout = setTimeout(() => {
+            nameIntro.classList.remove('stable-line');
+          }, 10500);
         }
       }
     };
