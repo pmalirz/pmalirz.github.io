@@ -2,8 +2,8 @@
   <canvas id="hero-canvas"></canvas>
   <div class="content">
     <span class="name-intro">Przemek Malirz</span>
-    <h1 class="title">Architecting <br/><span class="gradient-text">Waves of Change</span></h1>
-    <p class="subtitle">In the ocean of constant change and the era of agentic AI, we must ensure businesses use the most optimal solutions, navigating and delivering value in a market more competitive than ever before.</p>
+    <h1 class="title"><span id="title-line1">Architecting the Future of</span> <br/><span id="title-line2" class="gradient-text">AI & Distributed Systems</span></h1>
+    <p class="subtitle">Bridging the gap between business vision and technical execution. I specialize in designing large-scale architectures, modernizing legacy systems, and leading engineering teams to deliver robust software in fast-paced markets.</p>
     <div class="cta-group">
       <a href="#projects" class="btn glass">View My Work</a>
       <a href="#contact" class="btn-outline">Say Hello</a>
@@ -46,6 +46,10 @@
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease-out 0.2s forwards;
     opacity: 0;
+  }
+  #title-line1, #title-line2 {
+    transition: opacity 0.4s ease-in-out;
+    display: inline-block;
   }
   .name-intro {
     display: inline-block;
@@ -299,6 +303,7 @@
     // --- ELECTRIC BLAST ---
     let blastPoint = null;
     let blastStartTime = -9999;
+    let calmTextTimeout1, calmTextTimeout2, calmTextTimeout3;
     
     const handleClick = () => {
       raycaster.setFromCamera(mouseParams, camera);
@@ -307,6 +312,39 @@
         // Record where and when they clicked
         blastPoint = intersects[0].point;
         blastStartTime = clock.getElapsedTime();
+
+        const titleLine1 = document.getElementById('title-line1');
+        const titleLine2 = document.getElementById('title-line2');
+        
+        if (titleLine1 && titleLine2) {
+          // Clear any ongoing timeouts from a previous click
+          clearTimeout(calmTextTimeout1);
+          clearTimeout(calmTextTimeout2);
+          clearTimeout(calmTextTimeout3);
+
+          titleLine1.style.opacity = '0';
+          titleLine2.style.opacity = '0';
+          
+          calmTextTimeout1 = setTimeout(() => {
+            titleLine1.textContent = "Turning Complexity into";
+            titleLine2.textContent = "Predictable Stability";
+            titleLine1.style.opacity = '1';
+            titleLine2.style.opacity = '1';
+          }, 400);
+
+          // Revert exactly when the wave recovers to full amplitude (12s later)
+          calmTextTimeout2 = setTimeout(() => {
+            titleLine1.style.opacity = '0';
+            titleLine2.style.opacity = '0';
+            
+            calmTextTimeout3 = setTimeout(() => {
+              titleLine1.textContent = "Architecting the Future of";
+              titleLine2.textContent = "AI & Distributed Systems";
+              titleLine1.style.opacity = '1';
+              titleLine2.style.opacity = '1';
+            }, 400);
+          }, 12000); 
+        }
       }
     };
     document.addEventListener('click', handleClick);
