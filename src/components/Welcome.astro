@@ -387,15 +387,15 @@
           if (distanceToHover > 0 && distanceToHover < interactionRadius) {
             const normalizedDist = distanceToHover / interactionRadius;
             
-            // Smooth easing force for magnetic attraction
-            const pullForce = Math.pow(1.0 - normalizedDist, 1.5) * 0.6; // Pulls particles up to 60% towards the center
+            // Smooth easing force for magnetic attraction (pulls them tightly to the cursor center)
+            const pullForce = Math.pow(1.0 - normalizedDist, 1.5) * 0.85; 
             
             // Squeeze particles tightly towards the mouse coordinates
             targetX -= dx * pullForce;
             targetZ -= dz * pullForce;
             
-            // Subtle lift to give the clustered area a bit of depth
-            targetY += pullForce * 0.5;
+            // Keep Y completely flat relative to the wave to prevent the 3D projection 
+            // from visually offsetting the cluster above the 2D screen cursor.
           }
         }
 
