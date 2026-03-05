@@ -1,8 +1,9 @@
 <div class="hero-container">
   <canvas id="hero-canvas"></canvas>
   <div class="content">
+    <span class="name-intro">Przemek Malirz</span>
     <h1 class="title">Architecting <br/><span class="gradient-text">Optimal Solutions</span></h1>
-    <p class="subtitle">Where cutting-edge technology seamlessly meets business vision.</p>
+    <p class="subtitle">Delivering complete, reliable, and easy-to-maintain solutions that bridge technology and business.<br/>Expertise spanning from hands-on engineering to strategic client relations.</p>
     <div class="cta-group">
       <a href="#projects" class="btn glass">View My Work</a>
       <a href="#contact" class="btn-outline">Say Hello</a>
@@ -43,14 +44,37 @@
   .title {
     font-size: clamp(3rem, 8vw, 6rem);
     margin-bottom: 1rem;
-    animation: fadeInUp 1s ease-out forwards;
+    animation: fadeInUp 1s ease-out 0.2s forwards;
     opacity: 0;
+  }
+  .name-intro {
+    display: inline-block;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 50px;
+    animation: fadeInUp 1s ease-out 0.1s forwards;
+    opacity: 0;
+  }
+  .name-intro::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 35px;
+    height: 1px;
+    background: var(--color-secondary);
+    opacity: 0.6;
   }
   .subtitle {
     font-size: clamp(1rem, 3vw, 1.5rem);
     color: var(--color-text);
     margin-bottom: 2.5rem;
-    animation: fadeInUp 1s ease-out 0.3s forwards;
+    animation: fadeInUp 1s ease-out 0.4s forwards;
     opacity: 0;
   }
   .cta-group {
@@ -58,7 +82,7 @@
     gap: 1.5rem;
     justify-content: center;
     pointer-events: auto;
-    animation: fadeInUp 1s ease-out 0.6s forwards;
+    animation: fadeInUp 1s ease-out 0.7s forwards;
     opacity: 0;
   }
   .btn, .btn-outline {
