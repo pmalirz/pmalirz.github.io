@@ -48,8 +48,13 @@
     opacity: 0;
   }
   #title-line1, #title-line2 {
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.5s ease-in-out;
     display: inline-block;
+  }
+  .title-emerge-hidden {
+    opacity: 0 !important;
+    transform: translateY(20px) scale(0.97);
+    filter: blur(10px);
   }
   .name-intro {
     display: inline-block;
@@ -322,28 +327,32 @@
           clearTimeout(calmTextTimeout2);
           clearTimeout(calmTextTimeout3);
 
-          titleLine1.style.opacity = '0';
-          titleLine2.style.opacity = '0';
+          // Reset inline styles if any
+          titleLine1.style.opacity = '';
+          titleLine2.style.opacity = '';
+
+          titleLine1.classList.add('title-emerge-hidden');
+          titleLine2.classList.add('title-emerge-hidden');
           
           calmTextTimeout1 = setTimeout(() => {
             titleLine1.textContent = "Turning Complexity into";
             titleLine2.textContent = "Predictable Stability";
-            titleLine1.style.opacity = '1';
-            titleLine2.style.opacity = '1';
-          }, 400);
+            titleLine1.classList.remove('title-emerge-hidden');
+            titleLine2.classList.remove('title-emerge-hidden');
+          }, 1200);
 
-          // Revert exactly when the wave recovers to full amplitude (12s later)
+          // Revert smoothly as the wave starts returning back to full amplitude
           calmTextTimeout2 = setTimeout(() => {
-            titleLine1.style.opacity = '0';
-            titleLine2.style.opacity = '0';
+            titleLine1.classList.add('title-emerge-hidden');
+            titleLine2.classList.add('title-emerge-hidden');
             
             calmTextTimeout3 = setTimeout(() => {
               titleLine1.textContent = "Architecting the Future of";
               titleLine2.textContent = "AI & Distributed Systems";
-              titleLine1.style.opacity = '1';
-              titleLine2.style.opacity = '1';
-            }, 400);
-          }, 12000); 
+              titleLine1.classList.remove('title-emerge-hidden');
+              titleLine2.classList.remove('title-emerge-hidden');
+            }, 1200);
+          }, 10500); 
         }
       }
     };
