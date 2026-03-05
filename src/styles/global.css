@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 :root {
     --color-bg: #0f0a05;
@@ -14,8 +14,8 @@
     /* Patina */
     --color-text: #e8dcc7;
     --color-heading: #ffffff;
-    --font-primary: 'Playfair Display', serif;
-    --font-secondary: 'Montserrat', sans-serif;
+    --font-primary: 'Orbitron', sans-serif;
+    --font-secondary: 'Rajdhani', sans-serif;
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
