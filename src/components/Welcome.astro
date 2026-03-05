@@ -101,16 +101,16 @@
   .btn:hover {
     background: var(--color-surface-hover);
     transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
   }
   .btn-outline {
     border: 1px solid var(--color-secondary);
     color: var(--color-secondary);
   }
   .btn-outline:hover {
-    background: rgba(0, 255, 255, 0.1);
+    background: rgba(184, 115, 51, 0.1);
     transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(184, 115, 51, 0.2);
   }
   
   .scroll-indicator {
@@ -193,8 +193,8 @@
     const originalPositions = new Float32Array(numParticles * 3);
     const originalColors = new Float32Array(numParticles * 3);
     
-    const colorPrimary = new THREE.Color(0x8a2be2);
-    const colorSecondary = new THREE.Color(0x00ffff);
+    const colorPrimary = new THREE.Color(0xd4af37); // Gold
+    const colorSecondary = new THREE.Color(0x559e83); // Patina
 
     let index = 0;
     for (let i = 0; i < countX; i++) {
@@ -409,10 +409,10 @@
         }
 
         // Apply additive light to the original color
-        // Making it orange tinted: high Red, medium Green, low Blue
+        // Making it gold/copper tinted: high Red, medium-high Green, low Blue
         colArr[i3] = Math.min(1.0, originalColors[i3] + reflexVal * 1.0);       // Red
-        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal * 0.55); // Green
-        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal * 0.1);  // Blue
+        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal * 0.75); // Green
+        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal * 0.2);  // Blue
       }
 
       positions.needsUpdate = true;
