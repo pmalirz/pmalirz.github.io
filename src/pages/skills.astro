@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const skills = [
+  { category: "Core", items: ["HTML", "CSS/SCSS", "JavaScript", "TypeScript"] },
+  { category: "Frameworks", items: ["React", "Vue", "Astro", "Next.js"] },
+  { category: "Styling", items: ["TailwindCSS", "Styled Components", "Framer Motion", "GSAP"] },
+  { category: "Tools", items: ["Git", "Webpack", "Vite", "Figma"] }
+];
+---
+
+<Layout title="Skills | Przemek Malirz">
+  <div class="page-container container">
+    <div class="header">
+      <h1 class="page-title gradient-text">My Arsenal</h1>
+      <p class="page-desc">The technologies and tools I use to bring ideas to life.</p>
+    </div>
+
+    <div class="skills-grid">
+      {skills.map((skillGroup, index) => (
+        <div class="skill-card glass" style={`animation-delay: ${index * 0.1}s`}>
+          <h2 class="category-title">{skillGroup.category}</h2>
+          <div class="tags">
+            {skillGroup.items.map((item) => (
+              <span class="tag">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  .page-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  .page-desc {
+    color: var(--color-text);
+    font-size: 1.2rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .skill-card {
+    padding: 2rem;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(138, 43, 226, 0.15);
+    border-color: rgba(138, 43, 226, 0.3);
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-heading);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+
+  .tag:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,3 +1,11 @@
+---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import { ClientRouter } from 'astro:transitions';
+
+const { title = "Przemek Malirz - Portfolio", description = "Modern frontend developer portfolio" } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,18 +14,24 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<ClientRouter />
 	</head>
 	<body>
-		<slot />
+		<Navigation />
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	main {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		z-index: 1;
 	}
 </style>
