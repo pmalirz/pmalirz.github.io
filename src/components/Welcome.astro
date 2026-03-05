@@ -306,25 +306,29 @@
         const sweepDist = Math.abs(linePos - sweepPos);
         
         if (sweepDist < 1.5) {
-          // Sharp intense bright line passing through
-          reflexVal += Math.pow(1.0 - (sweepDist / 1.5), 2.0) * 0.8;
+          // Sharp intense bright line passing through, with strong blinking
+          const blink = Math.sin(elapsedTime * 25.0 + i) * 0.5 + 0.5;
+          reflexVal += Math.pow(1.0 - (sweepDist / 1.5), 2.0) * (1.2 + blink * 1.5);
         }
         
         // 2. Wave crest highlights (peaks catch the light)
         const crestHeight = targetY - origY;
         if (crestHeight > 0.3) {
-           reflexVal += (crestHeight - 0.3) * 0.5;
+           const blink = Math.sin(elapsedTime * 15.0 + i * 2) * 0.5 + 0.5;
+           reflexVal += (crestHeight - 0.3) * (1.5 + blink * 2.0);
         }
         
         // 3. Hover illumination
         if (distanceToHover !== -1 && distanceToHover < 3.5) {
-           reflexVal += Math.pow(1.0 - (distanceToHover / 3.5), 2.0) * 0.6;
+           const blink = Math.random() > 0.3 ? 1.5 : 0.5; // strong flicker near hover
+           reflexVal += Math.pow(1.0 - (distanceToHover / 3.5), 2.0) * (1.2 * blink);
         }
 
         // Apply additive light to the original color
-        colArr[i3] = Math.min(1.0, originalColors[i3] + reflexVal);
-        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal);
-        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal);
+        // Making it orange tinted: high Red, medium Green, low Blue
+        colArr[i3] = Math.min(1.0, originalColors[i3] + reflexVal * 1.0);       // Red
+        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal * 0.55); // Green
+        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal * 0.1);  // Blue
       }
 
       positions.needsUpdate = true;
