@@ -146,58 +146,88 @@
     if (!canvas) return;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.002);
+    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.05);
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 3, 10);
+    camera.lookAt(0, -2, 0);
+
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
-    
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = window.innerWidth < 768 ? 1500 : 3000;
-    const posArray = new Float32Array(particlesCount * 3);
-    const colorsArray = new Float32Array(particlesCount * 3);
-    
-    const color1 = new THREE.Color(0x8a2be2); // Primary
-    const color2 = new THREE.Color(0x00ffff); // Secondary
+    // --- OCEAN GRID ---
+    const isMobile = window.innerWidth < 768;
+    const countX = isMobile ? 120 : 250;
+    const countZ = isMobile ? 120 : 200;
+    const gap = isMobile ? 0.25 : 0.15;
+    const numParticles = countX * countZ;
 
-    for(let i = 0; i < particlesCount * 3; i+=3) {
-      posArray[i] = (Math.random() - 0.5) * 20;     // x
-      posArray[i+1] = (Math.random() - 0.5) * 20;   // y
-      posArray[i+2] = (Math.random() - 0.5) * 20;   // z
-      
-      const mixedColor = color1.clone().lerp(color2, Math.random());
-      colorsArray[i] = mixedColor.r;
-      colorsArray[i+1] = mixedColor.g;
-      colorsArray[i+2] = mixedColor.b;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const posArray = new Float32Array(numParticles * 3);
+    const colorsArray = new Float32Array(numParticles * 3);
+    const originalPositions = new Float32Array(numParticles * 3);
+    
+    const colorPrimary = new THREE.Color(0x8a2be2);
+    const colorSecondary = new THREE.Color(0x00ffff);
+
+    let index = 0;
+    for (let i = 0; i < countX; i++) {
+      for (let j = 0; j < countZ; j++) {
+        const x = (i - countX / 2) * gap;
+        const z = (j - countZ / 2) * gap;
+        const y = 0;
+
+        posArray[index * 3] = x;
+        posArray[index * 3 + 1] = y;
+        posArray[index * 3 + 2] = z;
+
+        originalPositions[index * 3] = x;
+        originalPositions[index * 3 + 1] = y;
+        originalPositions[index * 3 + 2] = z;
+
+        const mixRatio = (Math.sin(i * 0.05) + Math.cos(j * 0.05) + 2) / 4;
+        const mixedColor = colorPrimary.clone().lerp(colorSecondary, mixRatio);
+        
+        colorsArray[index * 3] = mixedColor.r;
+        colorsArray[index * 3 + 1] = mixedColor.g;
+        colorsArray[index * 3 + 2] = mixedColor.b;
+        
+        index++;
+      }
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.05,
+      size: isMobile ? 0.06 : 0.04,
       vertexColors: true,
       blending: THREE.AdditiveBlending,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.9,
       depthWrite: false
     });
 
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    particlesMesh.position.y = -3;
     scene.add(particlesMesh);
 
-    camera.position.z = 5;
+    // --- INTERACTION PLANE ---
+    const raycaster = new THREE.Raycaster();
+    const mouseParams = new THREE.Vector2(-9999, -9999);
+    const invisiblePlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(200, 200),
+      new THREE.MeshBasicMaterial({ visible: false })
+    );
+    invisiblePlane.rotation.x = -Math.PI / 2;
+    invisiblePlane.position.y = -3;
+    scene.add(invisiblePlane);
 
-    let mouseX = 0;
-    let mouseY = 0;
-    
     const handleMouseMove = (event) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      mouseParams.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouseParams.y = -(event.clientY / window.innerHeight) * 2 + 1;
     };
-    
     document.addEventListener('mousemove', handleMouseMove);
 
     const clock = new THREE.Clock();
@@ -207,12 +237,63 @@
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      particlesMesh.rotation.y = elapsedTime * 0.05;
-      particlesMesh.rotation.x = elapsedTime * 0.02;
+      // Find mouse intersection in 3D
+      raycaster.setFromCamera(mouseParams, camera);
+      const intersects = raycaster.intersectObject(invisiblePlane);
+      let hoverPoint = null;
+      if (intersects.length > 0) {
+        hoverPoint = intersects[0].point;
+      }
 
-      // Subtle mouse interaction
-      particlesMesh.rotation.y += mouseX * 0.02;
-      particlesMesh.rotation.x += mouseY * 0.02;
+      const positions = particlesGeometry.attributes.position;
+      const posArr = positions.array;
+
+      for (let i = 0; i < numParticles; i++) {
+        const i3 = i * 3;
+        
+        const origX = originalPositions[i3];
+        const origZ = originalPositions[i3 + 2];
+        const origY = originalPositions[i3 + 1];
+
+        // Gentle ocean waves
+        let targetY = origY + Math.sin(elapsedTime * 1.5 + origX * 0.8) * 0.4 + Math.cos(elapsedTime * 1.5 + origZ * 0.8) * 0.4;
+        let targetX = origX;
+        let targetZ = origZ;
+
+        // Hover disturbance (weaving effect)
+        if (hoverPoint) {
+          const localHoverX = hoverPoint.x - particlesMesh.position.x;
+          const localHoverZ = hoverPoint.z - particlesMesh.position.z;
+
+          const dx = origX - localHoverX;
+          const dz = origZ - localHoverZ;
+          const distance = Math.sqrt(dx * dx + dz * dz);
+          
+          const interactionRadius = 3.5;
+          if (distance < interactionRadius) {
+            const force = (interactionRadius - distance) / interactionRadius;
+            
+            // Raise particles up like a magnetic pull
+            targetY += force * 2.5; 
+            
+            // Swirl / weave them centrifugally based on distance
+            const angle = Math.atan2(dz, dx) + (elapsedTime * 2);
+            targetX += Math.cos(angle) * force * 1.2;
+            targetZ += Math.sin(angle) * force * 1.2;
+          }
+        }
+
+        // Smooth physics interpolation (easing back into place)
+        posArr[i3] += (targetX - posArr[i3]) * 0.08;
+        posArr[i3 + 1] += (targetY - posArr[i3 + 1]) * 0.08;
+        posArr[i3 + 2] += (targetZ - posArr[i3 + 2]) * 0.08;
+      }
+
+      positions.needsUpdate = true;
+
+      // Subtle camera pan linked to mouse
+      camera.position.x += (mouseParams.x * 2 - camera.position.x) * 0.02;
+      camera.lookAt(0, -1, 0);
 
       renderer.render(scene, camera);
     };
@@ -235,6 +316,8 @@
       renderer.dispose();
       particlesGeometry.dispose();
       particlesMaterial.dispose();
+      invisiblePlane.geometry.dispose();
+      invisiblePlane.material.dispose();
     }, { once: true });
   }
 
@@ -243,7 +326,6 @@
   
   // Re-init on navigation
   document.addEventListener('astro:page-load', () => {
-    // Only init if canvas is present and hasn't been initialized
     if(document.querySelector('#hero-canvas') && !document.querySelector('#hero-canvas').dataset.initialized) {
       document.querySelector('#hero-canvas').dataset.initialized = 'true';
       initThreeJS();
