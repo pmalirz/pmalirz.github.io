@@ -362,17 +362,63 @@
           }
         }
 
+        // --- Click Blast (Electric Wave) ---
+        let electricVal = 0;
+        if (blastPoint) {
+            const dxB = origX - (blastPoint.x - particlesMesh.position.x);
+            const dzB = origZ - (blastPoint.z - particlesMesh.position.z);
+            const distB = Math.sqrt(dxB * dxB + dzB * dzB);
+            
+            const timeSinceBlast = elapsedTime - blastStartTime;
+            const blastRadius = timeSinceBlast * 45.0; // very fast expansion
+            
+            // Active duration of the blast wave
+            if (timeSinceBlast > 0 && timeSinceBlast < 4.0) {
+                const ringThickness = 2.5;
+                const distFromRing = Math.abs(distB - blastRadius);
+                
+                // Primary outer electric ring
+                if (distFromRing < ringThickness) {
+                   const intensity = 1.0 - (distFromRing / ringThickness);
+                   const fadeFactor = Math.max(0, 1.0 - (timeSinceBlast / 4.0));
+                   // Violent electric flickering inside the expanding ring
+                   const blink = Math.random() > 0.1 ? 5.0 : 0.0;
+                   electricVal += intensity * blink * fadeFactor * 3.5;
+                   
+                   // Add vertical sparks/spikes jumps out of the water
+                   if (intensity > 0.5 && Math.random() > 0.8) {
+                       targetY += intensity * fadeFactor * (Math.random() * 5.0 - 1.0);
+                   }
+                }
+                
+                // Secondary inner intense shockwave
+                const innerRadius = timeSinceBlast * 22.0;
+                const distFromInner = Math.abs(distB - innerRadius);
+                if (distFromInner < 1.5) {
+                   const innerIntensity = 1.0 - (distFromInner / 1.5);
+                   const fadeFactor = Math.max(0, 1.0 - (timeSinceBlast / 4.0));
+                   electricVal += innerIntensity * fadeFactor * 6.0 * (Math.random() > 0.2 ? 1 : 0);
+                   
+                   // Secondary bumps
+                   if (Math.random() > 0.8) {
+                       targetY += innerIntensity * fadeFactor * 2.5;
+                   }
+                }
+            }
+        }
+
         // Smooth physics interpolation (easing back into place)
-        posArr[i3] += (targetX - posArr[i3]) * 0.08;
-        posArr[i3 + 1] += (targetY - posArr[i3 + 1]) * 0.08;
-        posArr[i3 + 2] += (targetZ - posArr[i3 + 2]) * 0.08;
+        const stiff = electricVal > 0 ? 0.15 : 0.08; // Snappier reaction for electric shock
+        posArr[i3] += (targetX - posArr[i3]) * stiff;
+        posArr[i3 + 1] += (targetY - posArr[i3 + 1]) * stiff;
+        posArr[i3 + 2] += (targetZ - posArr[i3 + 2]) * stiff;
         
         // --- Light Reflexes ---
         let reflexVal = 0;
         
         // 1. Wave crest highlights (peaks catch the light)
         const crestHeight = targetY - origY;
-        if (crestHeight > 0.3) {
+        if (crestHeight > 0.3 && electricVal === 0) {
            const blink = Math.sin(elapsedTime * 15.0 + i * 2) * 0.5 + 0.5;
            reflexVal += (crestHeight - 0.3) * (1.5 + blink * 2.0);
         }
@@ -383,36 +429,21 @@
            reflexVal += Math.pow(1.0 - (distanceToHover / 3.5), 2.0) * (1.2 * blink);
         }
 
-        // 4. Click Blast current
-        if (blastPoint) {
-            const dxB = origX - (blastPoint.x - particlesMesh.position.x);
-            const dzB = origZ - (blastPoint.z - particlesMesh.position.z);
-            const distB = Math.sqrt(dxB * dxB + dzB * dzB);
-            
-            // Rapidly expand an electric ring outward based on time
-            const timeSinceBlast = elapsedTime - blastStartTime;
-            const blastRadius = timeSinceBlast * 35.0; // very fast expansion
-            
-            // If the ring is currently passing over this particle, illuminate it wildly
-            if (timeSinceBlast > 0 && timeSinceBlast < 3.0) { // dies out after 3 seconds max
-                const ringThickness = 1.5;
-                const distFromRing = Math.abs(distB - blastRadius);
-                
-                if (distFromRing < ringThickness) {
-                   const intensity = 1.0 - (distFromRing / ringThickness);
-                   const fadeFactor = Math.max(0, 1.0 - (timeSinceBlast / 3.0));
-                   // Violent electric flickering inside the expanding ring
-                   const blink = Math.random() > 0.2 ? 3.5 : 0.0;
-                   reflexVal += intensity * blink * fadeFactor * 2.0;
-                }
-            }
+        // Apply additive light to the original color
+        let r = originalColors[i3] + reflexVal * 1.0;
+        let g = originalColors[i3 + 1] + reflexVal * 0.75;
+        let b = originalColors[i3 + 2] + reflexVal * 0.2;
+
+        if (electricVal > 0) {
+            // Neon cyan/electric blue burst
+            r += electricVal * 0.3; // bright core
+            g += electricVal * 0.9; // intense cyan
+            b += electricVal * 1.8; // intense electric blue
         }
 
-        // Apply additive light to the original color
-        // Making it gold/copper tinted: high Red, medium-high Green, low Blue
-        colArr[i3] = Math.min(1.0, originalColors[i3] + reflexVal * 1.0);       // Red
-        colArr[i3 + 1] = Math.min(1.0, originalColors[i3 + 1] + reflexVal * 0.75); // Green
-        colArr[i3 + 2] = Math.min(1.0, originalColors[i3 + 2] + reflexVal * 0.2);  // Blue
+        colArr[i3] = Math.min(1.0, r);       // Red
+        colArr[i3 + 1] = Math.min(1.0, g); // Green
+        colArr[i3 + 2] = Math.min(1.0, b);  // Blue
       }
 
       positions.needsUpdate = true;
