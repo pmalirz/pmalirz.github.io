@@ -18,6 +18,16 @@ const { title = "Przemek Malirz - Portfolio", description = "Modern frontend dev
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<title>{title}</title>
 		<ClientRouter />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-30F0RT6G0V"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-30F0RT6G0V');
+		</script>
 	</head>
 	<body>
 		<main>
