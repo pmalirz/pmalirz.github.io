@@ -5,9 +5,32 @@ import Welcome from '../components/Welcome.astro';
 // import Skills from '../components/Skills.astro';
 // import Projects from '../components/Projects.astro';
 // import Contact from '../components/Contact.astro';
+
+const pageTitle = "Przemek Malirz | Solution & Enterprise Architecture";
+const pageDescription = "Przemek Malirz - Technical Leader specializing in AI & Distributed Systems. I help companies modernize legacy systems, scale architectures, and deliver robust software.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Przemek Malirz",
+  "jobTitle": "Solution & Enterprise Architect",
+  "url": "https://pmalirz.github.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/przemyslawmalirz/",
+    "https://github.com/pmalirz/"
+  ],
+  "knowsAbout": [
+    "Artificial Intelligence", 
+    "Distributed Systems", 
+    "Software Architecture", 
+    "Legacy System Modernization", 
+    "Technical Leadership"
+  ]
+};
 ---
 
-<Layout title="Przemek Malirz | Solution & Enterprise Architect">
+<Layout title={pageTitle} description={pageDescription}>
+	<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 	<Welcome />
 	{/* <About /> */}
 	{/* <Skills /> */}

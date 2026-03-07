@@ -627,8 +627,36 @@
   // Initial load
   initThreeJS();
   
+  // Analytics Tracking for Contact Buttons
+  function initAnalyticsTracking() {
+    const trackClick = (selector, method) => {
+      const el = document.querySelector(selector);
+      if (el && !el.dataset.analyticsInitialized) {
+        el.dataset.analyticsInitialized = 'true';
+        el.addEventListener('click', () => {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'generate_lead', {
+              event_category: 'contact',
+              event_label: method,
+              value: 1
+            });
+          }
+        });
+      }
+    };
+    
+    trackClick('a[aria-label="Email"]', 'Email');
+    trackClick('a[aria-label="Phone"]', 'Phone');
+    trackClick('a[aria-label="LinkedIn"]', 'LinkedIn');
+    trackClick('a[aria-label="GitHub"]', 'GitHub');
+  }
+
+  // Init analytics on load
+  initAnalyticsTracking();
+
   // Re-init on navigation
   document.addEventListener('astro:page-load', () => {
+    initAnalyticsTracking();
     if(document.querySelector('#hero-canvas') && !document.querySelector('#hero-canvas').dataset.initialized) {
       document.querySelector('#hero-canvas').dataset.initialized = 'true';
       initThreeJS();
