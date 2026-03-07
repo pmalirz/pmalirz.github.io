@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
+import CookieConsent from '../components/CookieConsent.astro';
 
 const { title = "Przemek Malirz - Portfolio", description = "Modern frontend developer portfolio" } = Astro.props;
 ---
@@ -19,20 +20,34 @@ const { title = "Przemek Malirz - Portfolio", description = "Modern frontend dev
 		<title>{title}</title>
 		<ClientRouter />
 
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-30F0RT6G0V"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+		{import.meta.env.PROD && (
+			<>
+				<!-- Google tag (gtag.js) Setup with Consent Mode -->
+				<script is:inline>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
 
-			gtag('config', 'G-30F0RT6G0V');
-		</script>
+					// Basic consent mode setup before gtag starts
+					var hasConsent = localStorage.getItem('cookie-consent') === 'granted';
+					gtag('consent', 'default', {
+						'analytics_storage': hasConsent ? 'granted' : 'denied',
+						'ad_storage': hasConsent ? 'granted' : 'denied',
+						'ad_user_data': hasConsent ? 'granted' : 'denied',
+						'ad_personalization': hasConsent ? 'granted' : 'denied'
+					});
+
+					gtag('js', new Date());
+					gtag('config', 'G-30F0RT6G0V');
+				</script>
+				<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-30F0RT6G0V"></script>
+			</>
+		)}
 	</head>
 	<body>
 		<main>
 			<slot />
 		</main>
+		<CookieConsent />
 	</body>
 </html>
 

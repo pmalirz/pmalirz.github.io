@@ -1,0 +1,175 @@
+---
+---
+
+<div id="cookie-banner" class="cookie-banner glass" style="display: none;">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <h3 class="cookie-title">Cookies & Privacy</h3>
+      <p>
+        I use Google Analytics to analyze website traffic and improve user experience. By clicking "Accept", you consent to the use of analytical cookies.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button id="btn-decline" class="btn-outline">Decline</button>
+      <button id="btn-accept" class="btn-accept">Accept</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: calc(100% - 2rem);
+    max-width: 800px;
+    z-index: 9999;
+    border-radius: 16px;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  .cookie-banner.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .cookie-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .cookie-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .cookie-text {
+    flex: 1;
+  }
+
+  .cookie-title {
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .cookie-text p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    opacity: 0.9;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .btn-outline, .btn-accept {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-accept {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .btn-accept:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('btn-accept');
+    const declineBtn = document.getElementById('btn-decline');
+
+    if (!banner || !acceptBtn || !declineBtn) return;
+
+    // Check if consent is already given
+    const consent = localStorage.getItem('cookie-consent');
+    
+    if (consent === null) {
+      // Show banner slightly after load for a smoother experience
+      setTimeout(() => {
+        banner.style.display = 'block';
+        // Trigger reflow
+        void banner.offsetWidth;
+        banner.classList.add('show');
+      }, 1000);
+    }
+
+    const hideBanner = () => {
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateX(-50%) translateY(20px)';
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 500);
+    };
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'granted');
+      
+      // Update Google Analytics Consent Mode status
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+      
+      hideBanner();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'denied');
+      
+      // Explicitly send denied to gtag (even though it's default)
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+      }
+      
+      hideBanner();
+    });
+  });
+</script>
