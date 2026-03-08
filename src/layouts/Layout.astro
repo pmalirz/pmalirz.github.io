@@ -59,6 +59,33 @@ const socialImageURL = new URL(image, Astro.url);
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<ClientRouter />
 
+		<!-- JSON-LD Schema -->
+		<script type="application/ld+json" set:html={`
+			{
+				"@context": "https://schema.org/",
+				"@type": "Person",
+				"name": "Przemek Malirz",
+				"url": "https://pmalirz.github.io",
+				"image": "https://pmalirz.github.io/og-image.jpg",
+				"jobTitle": "Solution & Enterprise Architect",
+				"sameAs": [
+					"https://www.linkedin.com/in/przemekmalirz/",
+					"https://x.com/pmalirz",
+					"https://github.com/pmalirz"
+				],
+				"knowsAbout": [
+					"Enterprise Architecture",
+					"Solution Architecture",
+					"Artificial Intelligence",
+					"Distributed Systems",
+					"Microservices",
+					"Java",
+					"TypeScript",
+					"Cloud Native"
+				]
+			}
+		`} />
+
 		{import.meta.env.PROD && (
 			<>
 				<!-- Google tag (gtag.js) Setup with Consent Mode -->
