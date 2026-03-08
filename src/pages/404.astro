@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "404 — Page Not Found | Przemek Malirz";
+const pageDescription = "The page you're looking for doesn't exist. Head back to the homepage.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<section class="not-found-section">
+		<div class="content">
+			<span class="error-code">404</span>
+			<h1 class="title">Page Not Found</h1>
+			<p class="message">The page you're looking for doesn't exist or has been moved.</p>
+			<a href="/" class="btn-home">
+				<i class="fa-solid fa-arrow-left"></i>
+				Back to Home
+			</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.not-found-section {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.error-code {
+		font-family: var(--font-primary);
+		font-size: clamp(6rem, 15vw, 12rem);
+		font-weight: 900;
+		background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-patina));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1;
+		opacity: 0.8;
+	}
+
+	.title {
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
+		color: var(--color-heading);
+	}
+
+	.message {
+		font-size: 1.15rem;
+		color: var(--color-text);
+		max-width: 400px;
+		line-height: 1.6;
+	}
+
+	.btn-home {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-top: 1rem;
+		padding: 0.9rem 2rem;
+		font-size: 1rem;
+		font-weight: 600;
+		font-family: var(--font-primary);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		border: 1px solid var(--color-secondary);
+		color: var(--color-secondary);
+		border-radius: 50px;
+		transition: var(--transition);
+	}
+
+	.btn-home:hover {
+		background: rgba(184, 115, 51, 0.1);
+		transform: translateY(-3px);
+		box-shadow: 0 10px 40px rgba(184, 115, 51, 0.2);
+	}
+</style>
