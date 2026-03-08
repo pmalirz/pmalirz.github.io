@@ -9,25 +9,36 @@
         <h2 class="section-title gradient-text">About Me</h2>
         
         <p class="bio highlight">
-          I am a <strong>Solution and Enterprise Architect</strong>, Tech Leader, and hands-on engineer dedicated to driving business value through robust technology.
+          I am a <strong>Solution and Enterprise Architect</strong> passionate about bridging the gap between ambitious business visions and flawless technical execution.
         </p>
 
         <p class="bio">
-          With over two decades of experience, I specialize in bridging the gap between complex technical landscapes and strategic business objectives. My expertise spans the entire software lifecycle—from high-level enterprise architecture and system design to low-level, hands-on implementation. I pride myself on delivering complete, reliable, and easy-to-maintain solutions that empower teams and elevate organizations.
+          For me, technology is a serious commitment. I take ownership of the entire software lifecycle, steering projects from concept to production while ensuring they are uncompromisingly secure and compliant by design. Whether navigating NIST, DORA, or the AI Act, I architect scalable systems that are both regulatory-proof and engineered to the highest standards, particularly within the core business domain.
+        </p>
+
+        <p class="bio">
+          My philosophy is rooted in <strong>pragmatism</strong>. I do not build complexity for the sake of it; instead, I champion the use of existing infrastructure and proven patterns to solve genuine problems. I firmly believe that a truly successful system must be easy to manage, maintain, and—crucially—<strong>easy to develop</strong>. By prioritizing frictionless developer environments and comprehensive observability, I ensure teams have the deep, actionable insights needed to continuously optimize performance and swiftly resolve production issues.
+        </p>
+
+        <p class="bio">
+          Quality is non-negotiable. I look beyond superficial metrics like simple code coverage, focusing instead on the actual integrity of testing and strict adherence to foundational principles such as SOLID, the Law of Demeter, and the 12-Factor App methodology. While I am confident in driving any technical initiative to the finish line, experience has taught me that the most overwhelming engineering challenges usually stem from a misunderstanding of the business itself. Therefore, deep alignment with business goals remains the bedrock of my work.
         </p>
         
         <p class="bio">
-          Whether I am leading cross-functional teams, implementing pragmatic architectures like DDD and CQRS, or fostering strong client relations, my goal is always to align technology with business vision. Currently, I am exploring how <strong>AI and Agentic Workflows</strong> can revolutionize software delivery, and I am always open to connecting with forward-thinking companies and professionals expanding their network.
+          Having led decentralized, agile engineering teams across diverse environments, I excel at translating ambiguous requirements into precise technical strategies. <strong>I tailor the technology to the problem, never the other way around.</strong> In large corporate landscapes, I actively champion <a href="https://innersourcecommons.org/" target="_blank" rel="noopener" style="color: var(--color-secondary); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(184, 115, 51, 0.4); text-underline-offset: 4px;">InnerSource</a> practices to break down silos, unify standards, and foster a culture of organic, cross-team cooperation.
         </p>
 
-        <p class="bio cta-text">
-          If you would like to build something new, refactor something old, or consult possibilities—now is the time to <a href="#contact" class="animated-link">contact me</a>.
+        <p class="bio">
+          Ultimately, my goal is to leave a lasting foundation. When I deliver a project, I provide more than just a robust technical implementation; I guarantee a complete transfer of knowledge through meticulous, multi-level documentation. I build to empower organizations—ensuring they not only utilize the systems I design but can confidently own, scale, and evolve them independently long into the future.
         </p>
 
-        <blockquote class="quote">
-          "Any intelligent fool can make things bigger, more complex, and more violent. It takes a touch of genius - and a lot of courage to move in the opposite direction." <br>
-          <span class="author">— E.F. Schumacher</span>
-        </blockquote>
+        <div class="open-network-box">
+          <i class="fa-solid fa-handshake handshake-icon"></i>
+          <div>
+            <span class="box-title">Always Open & Approachable</span>
+            <p class="box-text">I genuinely enjoy expanding my network and discovering new perspectives. Whether you are a recruiter looking for a serious architectural mind, a potential partner, or a fellow tech enthusiast wanting to talk shop—don't hesitate to reach out. Follow my social links at the top and simply say hi!</p>
+          </div>
+        </div>
       </div>
 
       <div class="badges-wrapper">
@@ -98,77 +109,6 @@
     font-weight: 600;
   }
 
-  .cta-text {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--color-heading);
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: rgba(184, 115, 51, 0.05);
-    border-radius: 8px;
-    border-left: 3px solid var(--color-secondary);
-  }
-
-  .animated-link {
-    background: linear-gradient(
-      120deg,
-      var(--color-primary) 0%,
-      var(--color-primary) 40%,
-      #ffffff 50%,
-      var(--color-primary) 60%,
-      var(--color-primary) 100%
-    );
-    background-size: 200% auto;
-    color: var(--color-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite;
-    position: relative;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
-    transition: transform 0.3s ease;
-  }
-
-  @keyframes shine {
-    to {
-      background-position: 200% center;
-    }
-  }
-
-  .animated-link::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--color-secondary);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-  }
-
-  .animated-link:hover {
-    background: linear-gradient(
-      120deg,
-      var(--color-secondary) 0%,
-      var(--color-secondary) 40%,
-      #ffffff 50%,
-      var(--color-secondary) 60%,
-      var(--color-secondary) 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transform: translateY(-2px);
-  }
-
-  .animated-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
 
   .quote {
     margin: 2rem 0;
@@ -212,12 +152,57 @@
     letter-spacing: 0.5px;
   }
 
+  .open-network-box {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(85, 158, 131, 0.08);
+    border-left: 4px solid var(--color-patina);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .open-network-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(85, 158, 131, 0.15);
+  }
+
+  .handshake-icon {
+    font-size: 2.5rem;
+    color: var(--color-patina);
+    flex-shrink: 0;
+  }
+
+  .box-title {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .box-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
   @media (max-width: 768px) {
     .about-card {
       padding: 2rem;
     }
     .badge {
       font-size: 0.8rem;
+    }
+    .open-network-box {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem;
+      border-left: none;
+      border-top: 4px solid var(--color-patina);
     }
   }
 </style>
