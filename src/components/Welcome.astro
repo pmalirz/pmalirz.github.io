@@ -371,6 +371,15 @@
         blastPoint = intersects[0].point;
         blastStartTime = clock.getElapsedTime();
 
+        // Send interaction to Google Analytics
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'hero_canvas_click', {
+            'event_category': 'engagement',
+            'event_label': 'threejs_particles',
+            'value': 1
+          });
+        }
+
         const titleLine1 = document.getElementById('title-line1');
         const titleLine2 = document.getElementById('title-line2');
         
